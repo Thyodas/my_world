@@ -5,14 +5,11 @@
 ## Makefile
 ##
 
-SRC = src/main.c \
-	  src/parser/parser.c \
-	  src/struct/player.c \
-	  src/game/event.c
+SRC = src/main.c
 
 OBJ = $(SRC:.c=.o)
 
-NAME = a.out
+NAME = my_world
 
 INCLUDE = include
 
@@ -31,11 +28,12 @@ make_lib:
 		  make -C $(LIB)
 
 title:
-		@echo "\033[1;37m\033[1;46m                   MY_SOKOBAN\
+		@echo "\033[1;37m\033[1;46m                   MY_WORLD\
                     \033[0m"
 
 $(NAME): make_lib title $(OBJ)
-		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lncurses -lmy
+		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy -lcsfml-graphics \
+		 -lcsfml-system -lm
 		 rm -f $(OBJ)
 
 clean:
