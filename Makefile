@@ -5,7 +5,12 @@
 ## Makefile
 ##
 
-SRC = src/main.c
+SRC = src/main.c \
+	  src/display/draw_map.c \
+	  src/display/main_loop.c \
+	  src/game/events/check_events.c \
+	  src/map/utils_map/print_map.c \
+	  src/map/create_2D_map.c \
 
 OBJ = $(SRC:.c=.o)
 
