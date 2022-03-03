@@ -13,29 +13,43 @@
 
 #define M_PI 3.14159265358979323846
 
-void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map, sfVector2f **map_2d)
+void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
 {
+    float angle = 1 * M_PI / 180;
     while (sfRenderWindow_pollEvent(win, &event) == sfTrue) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(win);
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
-
-        }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyDown) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j  < 6; j++) {
+                    map[i][j].x = (1 - (1 - cos(angle)) / 2) * map[i][j].x - ((1 - cos(angle)) / 2) * map[i][j].y - ((sin(angle)) / sqrt(2)) * map[i][j].z;
+                    map[i][j].y = (1 - (1 - cos(angle)) / 2) * map[i][j].y - ((1 - cos(angle)) / 2) * map[i][j].x - ((sin(angle)) / sqrt(2)) * map[i][j].z;
+                    map[i][j].z = (sin(angle) / sqrt(2)) * map[i][j].x + (sin(angle) / sqrt(2)) * map[i][j].y + cos(angle) * map[i][j].z;
+                }
+            }
+        }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j  < 6; j++) {
+                    map[i][j].x = (1 - (1 - cos(-angle)) / 2) * map[i][j].x - ((1 - cos(-angle)) / 2) * map[i][j].y - ((sin(-angle)) / sqrt(2)) * map[i][j].z;
+                    map[i][j].y = (1 - (1 - cos(-angle)) / 2) * map[i][j].y - ((1 - cos(-angle)) / 2) * map[i][j].x - ((sin(-angle)) / sqrt(2)) * map[i][j].z;
+                    map[i][j].z = (sin(-angle) / sqrt(2)) * map[i][j].x + (sin(-angle) / sqrt(2)) * map[i][j].y + cos(-angle) * map[i][j].z;
+                }
+            }
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
-                    map[i][j].x = cos(0.2 * M_PI / 180) * map[i][j].x - sin(0.2 * M_PI / 180) * map[i][j].y;
-                    map[i][j].y = cos(0.2 * M_PI / 180) * map[i][j].y + sin(0.2 * M_PI / 180) * map[i][j].x;
+                    map[i][j].x = cos(angle) * map[i][j].x - sin(angle) * map[i][j].y;
+                    map[i][j].y = cos(angle) * map[i][j].y + sin(angle) * map[i][j].x;
                 }
             }
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
-                    map[i][j].x = cos(-0.2 * M_PI / 180) * map[i][j].x - sin(-0.2 * M_PI / 180) * map[i][j].y;
-                    map[i][j].y = cos(-0.2 * M_PI / 180) * map[i][j].y + sin(-0.2 * M_PI / 180) * map[i][j].x;
+                    map[i][j].x = cos(-angle) * map[i][j].x - sin(-angle) * map[i][j].y;
+                    map[i][j].y = cos(-angle) * map[i][j].y + sin(-angle) * map[i][j].x;
                 }
             }
         }
