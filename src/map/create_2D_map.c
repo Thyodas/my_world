@@ -15,24 +15,50 @@
 #define MAP_Y 6
 #define M_PI 3.14159265358979323846
 
-sfVector2f project_iso_point(float x, float y, float z)
+sfVector2f project_iso_point(float x, float y, float z, sfVector2f angles,
+                            sfVector2f factors)
 {
     sfVector2f vector;
-    float angle_x = 35 * M_PI / 180;
-    float angle_y = 25 * M_PI / 180;
-    vector.x = (cos(angle_x) * x - cos(angle_x) * y) * 100 + 800;
-    vector.y = (sin(angle_x) * y + sin(angle_y) * x - z) * 50 + 300;
+    float angle_x = angles.x * M_PI / 180;
+    float angle_y = angles.y * M_PI / 180;
+    vector.x = (cos(angle_x) * x - cos(angle_x) * y) * factors.x;
+    vector.y = (sin(angle_y) * y + sin(angle_y) * x - z) * factors.y;
     return vector;
 }
 
-sfVector2f **create_2d_map(sfVector3f **map_3d)
+void translate_map(sfVector2f **map_2d, sfVector3f **map_3d,
+                    sfVector2f angles, sfVector2f factors)
+{
+    sfVector2f center_tile;
+    float rad_x = angles.x * M_PI / 180;
+    float rad_y = angles.y * M_PI / 180;
+    float c_x = map_3d[2][2].x;
+    float c_y = map_3d[2][2].y;
+    center_tile.x = (cos(rad_x) * c_x - (cos(rad_x) * c_y)) * factors.x;
+    center_tile.y = (sin(rad_y) * c_y + sin(rad_y) * c_x) * factors.y;
+    int offset_x = 960 - center_tile.x;
+    int offset_y = 540 - center_tile.y;
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            map_2d[i][j].x += offset_x;
+            map_2d[i][j].y += offset_y;
+        }
+    }
+}
+
+sfVector2f **create_2d_map(sfVector3f **map_3d, sfVector2f angles,
+                            sfVector2f factors)
 {
     sfVector2f **output = malloc(sizeof(sfVector2f *) * MAP_Y);
     for (int i = 0; i < MAP_Y; i++) {
         output[i] = malloc(sizeof(sfVector2f) * MAP_X);
         for (int j = 0; j < MAP_X; j++) {
-            output[i][j] = project_iso_point(map_3d[i][j].x, map_3d[i][j].y, map_3d[i][j].z);
+            float x = map_3d[i][j].x;
+            float y = map_3d[i][j].y;
+            float z = map_3d[i][j].z;
+            output[i][j] = project_iso_point(x, y, z, angles, factors);
         }
     }
+    translate_map(output, map_3d, angles, factors);
     return output;
 }
