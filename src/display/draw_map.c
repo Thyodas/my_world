@@ -25,26 +25,16 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2)
     return vertex_array;
 }
 
-int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d)
+int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfRenderStates state)
 {
     sfVertexArray *vertex_array;
     for (int i = 0; i < MAP_Y; i++) {
         for (int j = 0; j < MAP_X; j++) {
             if (j != MAP_X - 1) {
                 vertex_array = create_line(&map_2d[i][j], &map_2d[i][j + 1]);
-                sfTexture *sand = sfTexture_createFromFile("img/sand.jpg", NULL);
-                sfRenderStates state;
-                state.blendMode = sfBlendNone;
-                state.shader = NULL;
-                state.texture = sand;
                 sfRenderWindow_drawVertexArray(win, vertex_array, &state);
             }
             if (i != MAP_Y - 1) {
-                sfTexture *sand = sfTexture_createFromFile("img/sand.jpg", NULL);
-                sfRenderStates state;
-                state.texture = sand;
-                state.blendMode = sfBlendNone;
-                state.shader = NULL;
                 vertex_array = create_line(&map_2d[i][j], &map_2d[i + 1][j]);
                 sfRenderWindow_drawVertexArray(win, vertex_array, &state);
             }

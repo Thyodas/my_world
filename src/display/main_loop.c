@@ -13,7 +13,7 @@
 
 sfVector2f **create_2d_map(sfVector3f **map_3d, sfVector2f angles, sfVector2f factors);
 void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map);
-int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d);
+int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfRenderStates state);
 
 void main_loop(sfVector3f **map)
 {
@@ -25,11 +25,17 @@ void main_loop(sfVector3f **map)
     sfVector2f angles = {35, 25};
     sfVector2f factors = {100, 50};
     sfRenderWindow_setFramerateLimit(win, 500);
+    sfTexture *sand = sfTexture_createFromFile("img/sand.jpg", NULL);
+    sfRenderStates state;
+    state.texture = sand;
+    state.blendMode = sfBlendNone;
+    state.transform = sfTransform_Identity;
+    state.shader = NULL;
     while (sfRenderWindow_isOpen(win)) {
         map_2d = create_2d_map(map, angles, factors);
         sfRenderWindow_clear(win, sfBlack);
         check_event(event, win, map);
-        draw_2d_map(win, map_2d);
+        draw_2d_map(win, map_2d, state);
         sfRenderWindow_display(win);
     }
 }
