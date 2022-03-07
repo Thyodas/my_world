@@ -17,18 +17,18 @@ int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfRenderStates state);
 
 void main_loop(sfVector3f **map)
 {
-    map[3][3].z = 2;
+    //map[0][1].z = 2;
     sfVector2f **map_2d;
     sfVideoMode mode = {1920, 1080, 0};
     sfRenderWindow *win = sfRenderWindow_create(mode, "my_world", sfClose, NULL);
     sfEvent event;
     sfVector2f angles = {35, 25};
-    sfVector2f factors = {100, 50};
+    sfVector2f factors = {75, 25};
     sfRenderWindow_setFramerateLimit(win, 500);
-    sfTexture *sand = sfTexture_createFromFile("img/sand.jpg", NULL);
+    sfTexture *sand = sfTexture_createFromFile("img/check.jpg", NULL);
     sfRenderStates state;
     state.texture = sand;
-    state.blendMode = sfBlendNone;
+    state.blendMode = sfBlendAlpha;
     state.transform = sfTransform_Identity;
     state.shader = NULL;
     while (sfRenderWindow_isOpen(win)) {

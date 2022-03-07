@@ -11,8 +11,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define MAP_X 6
-#define MAP_Y 6
+#define MAP_X 10
+#define MAP_Y 10
 
 void main_loop(sfVector3f **map);
 

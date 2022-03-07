@@ -11,8 +11,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define MAP_X 6
-#define MAP_Y 6
+#define MAP_X 10
+#define MAP_Y 10
 #define M_PI 3.14159265358979323846
 
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f angles,
@@ -32,14 +32,14 @@ void translate_map(sfVector2f **map_2d, sfVector3f **map_3d,
     sfVector2f center_tile;
     float rad_x = angles.x * M_PI / 180;
     float rad_y = angles.y * M_PI / 180;
-    float c_x = map_3d[2][2].x;
-    float c_y = map_3d[2][2].y;
+    float c_x = map_3d[5][5].x;
+    float c_y = map_3d[5][5].y;
     center_tile.x = (cos(rad_x) * c_x - (cos(rad_x) * c_y)) * factors.x;
     center_tile.y = (sin(rad_y) * c_y + sin(rad_y) * c_x) * factors.y;
-    int offset_x = 960 - center_tile.x;
-    int offset_y = 540 - center_tile.y;
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
+    int offset_x = 930 - center_tile.x;
+    int offset_y = 510 - center_tile.y;
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
             map_2d[i][j].x += offset_x;
             map_2d[i][j].y += offset_y;
         }
