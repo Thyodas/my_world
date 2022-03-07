@@ -13,7 +13,7 @@
 
 sfVector2f **create_2d_map(sfVector3f **map_3d, sfVector2f angles, sfVector2f factors);
 void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map);
-int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfRenderStates state);
+int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfTexture *text);
 
 void main_loop(sfVector3f **map)
 {
@@ -28,14 +28,14 @@ void main_loop(sfVector3f **map)
     sfTexture *sand = sfTexture_createFromFile("img/check.jpg", NULL);
     sfRenderStates state;
     state.texture = sand;
-    state.blendMode = sfBlendAlpha;
+    state.blendMode = sfBlendNone;
     state.transform = sfTransform_Identity;
     state.shader = NULL;
     while (sfRenderWindow_isOpen(win)) {
         map_2d = create_2d_map(map, angles, factors);
-        sfRenderWindow_clear(win, sfBlack);
+        sfRenderWindow_clear(win, sfBlue);
         check_event(event, win, map);
-        draw_2d_map(win, map_2d, state);
+        draw_2d_map(win, map_2d, sand);
         sfRenderWindow_display(win);
     }
 }

@@ -27,7 +27,9 @@ void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
             //        map[i][j].z = (sin(angle) / sqrt(2)) * map[i][j].x + (sin(angle) / sqrt(2)) * map[i][j].y + cos(angle) * map[i][j].z;
             //    }
             //}
+            map[1][1].z -= 1;
             map[3][3].z -= 1;
+            map[8][8].z -= 1;
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
             //for (int i = 0; i < 10; i++) {
@@ -37,7 +39,9 @@ void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
             //        map[i][j].z = (sin(-angle) / sqrt(2)) * map[i][j].x + (sin(-angle) / sqrt(2)) * map[i][j].y + cos(-angle) * map[i][j].z;
             //    }
             //}
+            map[1][1].z += 1;
             map[3][3].z += 1;
+            map[8][8].z += 1;
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
             for (int i = 0; i < 10; i++) {

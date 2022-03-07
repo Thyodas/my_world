@@ -19,10 +19,10 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
     sfVertexArray *vertex_array = sfVertexArray_create();
     sfColor color = sfWhite;
     //color.a = 50;
-    sfVertex vertex1 = {.position = *point1, .color = color, .texCoords = *point1};
-    sfVertex vertex2 = {.position = *point2, .color = color, .texCoords = *point2};
-    sfVertex vertex3 = {.position = *point3, .color = color, .texCoords = *point3};
-    sfVertex vertex4 = {.position = *point4, .color = color, .texCoords = *point4};
+    sfVertex vertex1 = {.position = *point1, .color = color, .texCoords = (sfVector2f){0, 0}};
+    sfVertex vertex2 = {.position = *point2, .color = color, .texCoords = (sfVector2f){0, 2048}};
+    sfVertex vertex3 = {.position = *point3, .color = color, .texCoords = (sfVector2f){2048, 2048}};
+    sfVertex vertex4 = {.position = *point4, .color = color, .texCoords = (sfVector2f){2048, 0}};
     sfVertexArray_append(vertex_array, vertex1);
     sfVertexArray_append(vertex_array, vertex2);
     sfVertexArray_append(vertex_array, vertex3);
@@ -31,11 +31,16 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
     return vertex_array;
 }
 
-int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfRenderStates state)
+int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfTexture *text)
 {
     sfVertexArray *vertex_array;
     for (int i = 0; i < MAP_Y - 1; i++) {
         for (int j = 0; j < MAP_X - 1; j++) {
+            sfRenderStates state;
+            state.texture = text;
+            state.blendMode = sfBlendAlpha;
+            state.transform = sfTransform_Identity;
+            state.shader = NULL;
             vertex_array = create_line(&map_2d[i][j], &map_2d[i][j + 1], &map_2d[i + 1][j + 1], &map_2d[i + 1][j]);
             sfRenderWindow_drawVertexArray(win, vertex_array, &state);
         }
