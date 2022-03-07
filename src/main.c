@@ -6,27 +6,27 @@
 */
 
 #include "my.h"
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
+#include "myworld.h"
 #include <math.h>
 #include <stdlib.h>
 
 #define MAP_X 10
 #define MAP_Y 10
 
-void main_loop(sfVector3f **map);
+void main_loop(data_t data);
 
 int main(int argc, char **argv)
 {
-    sfVector3f **test = malloc(sizeof(sfVector3f *) * MAP_Y);
+    data_t data;
+    data.map.array_3d = malloc(sizeof(sfVector3f *) * MAP_Y);
     for (int i = 0; i < MAP_Y; i++) {
-        test[i] = malloc(sizeof(sfVector3f) * MAP_X);
+        data.map.array_3d[i] = malloc(sizeof(sfVector3f) * MAP_X);
         for (int j = 0; j < MAP_X; j++) {
-            test[i][j].x = i;
-            test[i][j].y = j;
-            test[i][j].z = 0;
+            data.map.array_3d[i][j].x = i;
+            data.map.array_3d[i][j].y = j;
+            data.map.array_3d[i][j].z = 0;
         }
     }
-    main_loop(test);
+    main_loop(data);
     return 0;
 }

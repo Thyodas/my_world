@@ -6,20 +6,21 @@
 */
 
 #include "my.h"
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
+#include "myworld.h"
 #include <math.h>
 #include <stdlib.h>
 
 #define M_PI 3.14159265358979323846
 
-void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
+void check_event(data_t data)
 {
     float angle = 1 * M_PI / 180;
-    while (sfRenderWindow_pollEvent(win, &event) == sfTrue) {
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(win);
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyDown) {
+    sfVector3f **map = data.map.array_3d;
+    while (sfRenderWindow_pollEvent(data.window, &data.event) == sfTrue) {
+        if (data.event.type == sfEvtClosed)
+            sfRenderWindow_close(data.window);
+        if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
+        sfKeyDown) {
             //for (int i = 0; i < 10; i++) {
             //    for (int j = 0; j  < 10; j++) {
             //        map[i][j].x = (1 - (1 - cos(angle)) / 2) * map[i][j].x - ((1 - cos(angle)) / 2) * map[i][j].y - ((sin(angle)) / sqrt(2)) * map[i][j].z;
@@ -31,7 +32,8 @@ void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
             map[3][3].z -= 1;
             map[8][8].z -= 1;
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
+        if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
+        sfKeyUp) {
             //for (int i = 0; i < 10; i++) {
             //    for (int j = 0; j  < 10; j++) {
             //        map[i][j].x = (1 - (1 - cos(-angle)) / 2) * map[i][j].x - ((1 - cos(-angle)) / 2) * map[i][j].y - ((sin(-angle)) / sqrt(2)) * map[i][j].z;
@@ -43,7 +45,8 @@ void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
             map[3][3].z += 1;
             map[8][8].z += 1;
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
+        if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
+        sfKeyRight) {
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     map[i][j].x = cos(angle) * map[i][j].x - sin(angle) * map[i][j].y;
@@ -51,7 +54,8 @@ void check_event(sfEvent event, sfRenderWindow *win, sfVector3f **map)
                 }
             }
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
+        if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
+        sfKeyLeft) {
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     map[i][j].x = cos(-angle) * map[i][j].x - sin(-angle) * map[i][j].y;

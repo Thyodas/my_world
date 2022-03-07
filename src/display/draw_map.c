@@ -6,8 +6,7 @@
 */
 
 #include "my.h"
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
+#include "myworld.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -31,18 +30,18 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
     return vertex_array;
 }
 
-int draw_2d_map(sfRenderWindow *win, sfVector2f **map_2d, sfTexture *text)
+int draw_2d_map(data_t data)
 {
     sfVertexArray *vertex_array;
     for (int i = 0; i < MAP_Y - 1; i++) {
         for (int j = 0; j < MAP_X - 1; j++) {
             sfRenderStates state;
-            state.texture = text;
+            state.texture = data.textures.checker;
             state.blendMode = sfBlendAlpha;
             state.transform = sfTransform_Identity;
             state.shader = NULL;
-            vertex_array = create_line(&map_2d[i][j], &map_2d[i][j + 1], &map_2d[i + 1][j + 1], &map_2d[i + 1][j]);
-            sfRenderWindow_drawVertexArray(win, vertex_array, &state);
+            vertex_array = create_line(&data.map.array_2d[i][j], &data.map.array_2d[i][j + 1], &data.map.array_2d[i + 1][j + 1], &data.map.array_2d[i + 1][j]);
+            sfRenderWindow_drawVertexArray(data.window, vertex_array, &state);
         }
     }
     free(vertex_array);
