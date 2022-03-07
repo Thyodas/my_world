@@ -13,15 +13,19 @@
 #define MAP_X 10
 #define MAP_Y 10
 
-sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2, sfVector2f *point3, sfVector2f *point4)
+sfVertexArray *create_line(sfVector2f points[4], texture_data_t texture)
 {
     sfVertexArray *vertex_array = sfVertexArray_create();
     sfColor color = sfWhite;
     //color.a = 50;
-    sfVertex vertex1 = {.position = *point1, .color = color, .texCoords = (sfVector2f){0, 0}};
-    sfVertex vertex2 = {.position = *point2, .color = color, .texCoords = (sfVector2f){0, 2048}};
-    sfVertex vertex3 = {.position = *point3, .color = color, .texCoords = (sfVector2f){2048, 2048}};
-    sfVertex vertex4 = {.position = *point4, .color = color, .texCoords = (sfVector2f){2048, 0}};
+    sfVertex vertex1 = {.position = points[0], .color = color, .texCoords =
+                        (sfVector2f){0, 0}};
+    sfVertex vertex2 = {.position = points[1], .color = color, .texCoords =
+                        (sfVector2f){0, texture.size.y}};
+    sfVertex vertex3 = {.position = points[2], .color = color, .texCoords =
+                        (sfVector2f){texture.size.x, texture.size.y}};
+    sfVertex vertex4 = {.position = points[3], .color = color, .texCoords =
+                        (sfVector2f){texture.size.x, 0}};
     sfVertexArray_append(vertex_array, vertex1);
     sfVertexArray_append(vertex_array, vertex2);
     sfVertexArray_append(vertex_array, vertex3);
@@ -36,11 +40,15 @@ int draw_2d_map(data_t data)
     for (int i = 0; i < MAP_Y - 1; i++) {
         for (int j = 0; j < MAP_X - 1; j++) {
             sfRenderStates state;
-            state.texture = data.textures.checker;
+            state.texture = data.textures.checker.texture;
             state.blendMode = sfBlendAlpha;
             state.transform = sfTransform_Identity;
             state.shader = NULL;
-            vertex_array = create_line(&data.map.array_2d[i][j], &data.map.array_2d[i][j + 1], &data.map.array_2d[i + 1][j + 1], &data.map.array_2d[i + 1][j]);
+            sfVector2f points[4] = {data.map.array_2d[i][j],
+                                    data.map.array_2d[i][j + 1],
+                                    data.map.array_2d[i + 1][j + 1],
+                                    data.map.array_2d[i + 1][j]};
+            vertex_array = create_line(points, data.textures.checker);
             sfRenderWindow_drawVertexArray(data.window, vertex_array, &state);
         }
     }

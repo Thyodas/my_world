@@ -12,8 +12,13 @@
     #include <SFML/System.h>
 
     typedef struct {
-        sfTexture *sand;
-        sfTexture *checker;
+        sfTexture *texture;
+        sfVector2u size;
+    } texture_data_t;
+
+    typedef struct {
+        texture_data_t sand;
+        texture_data_t checker;
     } textures_t;
 
     typedef struct {

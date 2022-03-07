@@ -22,8 +22,11 @@ void main_loop(data_t data)
     sfVector2f angles = {35, 25};
     sfVector2f factors = {75, 25};
     sfRenderWindow_setFramerateLimit(data.window, 500);
-    data.textures.sand = sfTexture_createFromFile("img/sand.jpg", NULL);
-    data.textures.checker = sfTexture_createFromFile("img/check.jpg", NULL);
+    data.textures.sand.texture = sfTexture_createFromFile("img/sand.jpg", NULL);
+    data.textures.sand.size = (sfVector2u){800, 709};
+    data.textures.checker.texture = sfTexture_createFromFile("img/check.jpg",
+                                                          NULL);
+    data.textures.checker.size = (sfVector2u){2048, 2048};
     while (sfRenderWindow_isOpen(data.window)) {
         data.map.array_2d = create_2d_map(data.map.array_3d, angles, factors);
         sfRenderWindow_clear(data.window, sfBlue);
