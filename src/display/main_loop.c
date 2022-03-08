@@ -10,7 +10,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-sfVector2f **create_2d_map(sfVector3f **map_3d, sfVector2f angles, sfVector2f factors);
+sfVector2f **create_2d_map(sfVector3f **map_3d, sfVector2f factors);
 void check_event(data_t data);
 int draw_2d_map(data_t data);
 
@@ -19,7 +19,6 @@ void main_loop(data_t data)
     //map[0][1].z = 2;
     sfVideoMode mode = {1920, 1080, 0};
     data.window = sfRenderWindow_create(mode, "my_world", sfClose, NULL);
-    sfVector2f angles = {35, 25};
     sfVector2f factors = {75, 25};
     sfRenderWindow_setFramerateLimit(data.window, 500);
     data.textures.sand.texture = sfTexture_createFromFile("img/sand.jpg", NULL);
@@ -28,7 +27,7 @@ void main_loop(data_t data)
                                                           NULL);
     data.textures.checker.size = (sfVector2u){2048, 2048};
     while (sfRenderWindow_isOpen(data.window)) {
-        data.map.array_2d = create_2d_map(data.map.array_3d, angles, factors);
+        data.map.array_2d = create_2d_map(data.map.array_3d, factors);
         sfRenderWindow_clear(data.window, sfBlue);
         check_event(data);
         draw_2d_map(data);
