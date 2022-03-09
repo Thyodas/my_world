@@ -11,6 +11,10 @@
     #include <SFML/Graphics.h>
     #include <SFML/System.h>
 
+    #define MAP_X 10
+    #define MAP_Y 10
+    #define M_PI 3.14159265358979323846
+
     typedef struct {
         sfTexture *texture;
         sfVector2u size;
@@ -26,6 +30,7 @@
         sfVector3f **array_3d;
         int size_x;
         int size_y;
+        sfVector2f factors;
     } map_t;
 
     typedef struct {

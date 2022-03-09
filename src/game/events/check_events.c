@@ -10,8 +10,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define M_PI 3.14159265358979323846
-
 void check_event(data_t data)
 {
     float angle = 1 * M_PI / 180;
@@ -28,9 +26,8 @@ void check_event(data_t data)
             //        map[i][j].z = (sin(angle) / sqrt(2)) * map[i][j].x + (sin(angle) / sqrt(2)) * map[i][j].y + cos(angle) * map[i][j].z;
             //    }
             //}
-            map[1][1].z -= 1;
-            map[3][3].z -= 1;
-            map[8][8].z -= 1;
+            data.map.factors.x -= 5;
+            data.map.factors.y -= 5;
         }
         if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
         sfKeyUp) {
@@ -41,14 +38,13 @@ void check_event(data_t data)
             //        map[i][j].z = (sin(-angle) / sqrt(2)) * map[i][j].x + (sin(-angle) / sqrt(2)) * map[i][j].y + cos(-angle) * map[i][j].z;
             //    }
             //}
-            map[1][1].z += 1;
-            map[3][3].z += 1;
-            map[8][8].z += 1;
+            data.map.factors.x += 5;
+            data.map.factors.y += 5;
         }
         if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
         sfKeyRight) {
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < MAP_Y; i++) {
+                for (int j = 0; j < MAP_X; j++) {
                     map[i][j].x = cos(angle) * map[i][j].x - sin(angle) * map[i][j].y;
                     map[i][j].y = cos(angle) * map[i][j].y + sin(angle) * map[i][j].x;
                 }
@@ -56,8 +52,8 @@ void check_event(data_t data)
         }
         if (data.event.type == sfEvtKeyPressed && data.event.key.code ==
         sfKeyLeft) {
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < MAP_Y; i++) {
+                for (int j = 0; j < MAP_X; j++) {
                     map[i][j].x = cos(-angle) * map[i][j].x - sin(-angle) * map[i][j].y;
                     map[i][j].y = cos(-angle) * map[i][j].y + sin(-angle) * map[i][j].x;
                 }

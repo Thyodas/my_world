@@ -10,9 +10,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define MAP_X 10
-#define MAP_Y 10
-
 void main_loop(data_t data);
 
 int main(int argc, char **argv)
