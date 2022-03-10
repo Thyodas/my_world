@@ -13,7 +13,9 @@ SRC = src/main.c \
 	  src/map/create_2D_map.c \
 	  src/map/utils_map/init_map.c \
 	  src/window/init_window.c \
-	  src/textures/load_textures.c
+	  src/textures/load_textures.c \
+	  src/game/events/rotate.c \
+	  src/game/events/zoom.c \
 
 OBJ = $(SRC:.c=.o)
 
