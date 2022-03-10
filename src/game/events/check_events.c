@@ -12,8 +12,6 @@
 
 void rotate_right(sfVector3f **map);
 void rotate_left(sfVector3f **map);
-void zoom_in(data_t *data);
-void zoom_out(data_t *data);
 
 void rotate(sfEvent event, sfVector3f **map, int *recalc)
 {
@@ -30,11 +28,13 @@ void rotate(sfEvent event, sfVector3f **map, int *recalc)
 void zoom(sfEvent event, data_t *data, int *recalc)
 {
     if (event.type == sfEvtMouseWheelScrolled) {
-        if (event.mouseWheelScroll.delta > 0)
-            zoom_out(data);
-        else
-            zoom_in(data);
-        *recalc = 1;
+        float result_x = data->map.factors.x + 5 * event.mouseWheelScroll.delta;
+        float result_y = data->map.factors.y + 5 * event.mouseWheelScroll.delta;
+        if (result_x < 700 && result_x > 70) {
+            data->map.factors.x = result_x;
+            data->map.factors.y = result_y;
+            *recalc = 1;
+        }
     }
 }
 
