@@ -10,6 +10,7 @@
 #include "myworld.h"
 
 float calc_dist(sfVector2f point1, sfVector2f point2);
+void free_2d_map(sfVector2f **map_2d);
 
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
 {
@@ -48,6 +49,8 @@ sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
 
 sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data)
 {
+    if (data.map.array_2d != NULL)
+        free_2d_map(data.map.array_2d);
     sfVector2f **output = malloc(sizeof(sfVector2f *) * MAP_Y);
     for (int i = 0; i < MAP_Y; ++i) {
         output[i] = malloc(sizeof(sfVector2f) * MAP_X);

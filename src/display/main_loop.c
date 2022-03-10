@@ -30,6 +30,7 @@ void main_loop(data_t data)
 {
     init_data(&data);
     int recalc = 1;
+    data.map.array_2d = NULL;
     while (sfRenderWindow_isOpen(data.window)) {
         data.pos_mouse = sfMouse_getPositionRenderWindow(data.window);
         if (recalc == 1) {
