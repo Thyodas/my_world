@@ -16,6 +16,7 @@ SRC = src/main.c \
 	  src/textures/load_textures.c \
 	  src/game/events/rotate.c \
 	  src/game/events/zoom.c \
+	  src/utils/math/calc_dist.c
 
 OBJ = $(SRC:.c=.o)
 
