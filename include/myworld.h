@@ -25,6 +25,7 @@
     typedef struct {
         texture_data_t sand;
         texture_data_t checker;
+        texture_data_t hover;
     } textures_t;
 
     typedef struct {
@@ -40,6 +41,7 @@
         textures_t textures;
         map_t map;
         sfEvent event;
+        sfVector2i pos_mouse;
     } data_t;
 
 #endif /* MYWORLD_H_ */
