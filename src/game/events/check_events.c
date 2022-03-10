@@ -10,7 +10,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-void check_event(data_t *data)
+void check_event(data_t *data, int *recalc)
 {
     float angle = 1 * M_PI / 180;
     sfVector3f **map = data->map.array_3d;
@@ -21,11 +21,13 @@ void check_event(data_t *data)
         sfKeyDown) {
             data->map.factors.x -= 5;
             data->map.factors.y -= 5;
+            *recalc = 1;
         }
         if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
         sfKeyUp) {
             data->map.factors.x += 5;
             data->map.factors.y += 5;
+            *recalc = 1;
         }
         if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
         sfKeyRight) {
@@ -35,6 +37,7 @@ void check_event(data_t *data)
                     map[i][j].y = cos(angle) * map[i][j].y + sin(angle) * map[i][j].x;
                 }
             }
+            *recalc = 1;
         }
         if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
         sfKeyLeft) {
@@ -44,6 +47,7 @@ void check_event(data_t *data)
                     map[i][j].y = cos(-angle) * map[i][j].y + sin(-angle) * map[i][j].x;
                 }
             }
+            *recalc = 1;
         }
     }
 }
