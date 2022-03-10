@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include "myworld.h"
 
+float calc_dist(sfVector2f point1, sfVector2f point2);
+
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
 {
     sfVector2f vector;
@@ -25,9 +27,6 @@ sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
 void translate_map(sfVector2f **map_2d, sfVector3f **map_3d,
                     sfVector2f factors)
 {
-    sfVector2f center_tile;
-    float rad_x = DEG_TO_RAD(35);
-    float rad_y = DEG_TO_RAD(25);
     float c_x = (map_3d[0][0].x + map_3d[MAP_Y - 1][MAP_X - 1].x) / 2;
     float c_y = (map_3d[MAP_X - 1][0].y + map_3d[0][MAP_Y - 1].y) / 2;
     sfVector2f center_point = project_iso_point(c_x, c_y, 0, factors);
