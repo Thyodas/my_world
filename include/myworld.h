@@ -18,6 +18,7 @@
     typedef struct {
         sfTexture *texture;
         sfVector2u size;
+        int loaded;
     } texture_data_t;
 
     typedef struct {
