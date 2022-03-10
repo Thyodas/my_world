@@ -10,7 +10,17 @@
 #include <math.h>
 #include <stdlib.h>
 
-sfVertexArray *create_line(sfVector2f points[4], texture_data_t texture)
+sfRenderStates create_state(sfTexture *text)
+{
+    sfRenderStates state;
+    state.texture = text;
+    state.blendMode = sfBlendNone;
+    state.transform = sfTransform_Identity;
+    state.shader = NULL;
+    return state;
+}
+
+sfVertexArray *create_tile(sfVector2f points[4], texture_data_t texture)
 {
     sfVertexArray *vertex_array = sfVertexArray_create();
     sfVertex vertex1 = {.position = points[0], .color = sfWhite, .texCoords =
@@ -32,18 +42,14 @@ sfVertexArray *create_line(sfVector2f points[4], texture_data_t texture)
 int draw_2d_map(data_t data)
 {
     sfVertexArray *vertex_array;
-    sfRenderStates state;
-    state.texture = data.textures.checker.texture;
-    state.blendMode = sfBlendAlpha;
-    state.transform = sfTransform_Identity;
-    state.shader = NULL;
+    sfRenderStates state = create_state(data.textures.checker.texture);
     for (int i = 0; i < MAP_Y - 1; i++) {
         for (int j = 0; j < MAP_X - 1; j++) {
             sfVector2f points[4] = {data.map.array_2d[i][j],
                                     data.map.array_2d[i][j + 1],
                                     data.map.array_2d[i + 1][j + 1],
                                     data.map.array_2d[i + 1][j]};
-            vertex_array = create_line(points, data.textures.checker);
+            vertex_array = create_tile(points, data.textures.checker);
             sfRenderWindow_drawVertexArray(data.window, vertex_array, &state);
             free(vertex_array);
         }
