@@ -12,7 +12,7 @@
 
 void check_event(data_t *data, int *recalc)
 {
-    float angle = 1 * M_PI / 180;
+    float angle = DEG_TO_RAD(1);
     sfVector3f **map = data->map.array_3d;
     while (sfRenderWindow_pollEvent(data->window, &data->event) == sfTrue) {
         if (data->event.type == sfEvtClosed)
