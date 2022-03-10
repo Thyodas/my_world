@@ -11,6 +11,9 @@ SRC = src/main.c \
 	  src/game/events/check_events.c \
 	  src/map/utils_map/print_map.c \
 	  src/map/create_2D_map.c \
+	  src/map/utils_map/init_map.c \
+	  src/window/init_window.c \
+	  src/textures/load_textures.c
 
 OBJ = $(SRC:.c=.o)
 
