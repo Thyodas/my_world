@@ -7,11 +7,16 @@
 
 #include "myworld.h"
 
-int pos_in_tile(sfVector2i pos_mouse, sfVertexArray *vertex_array)
+int pnpoly(sfVector2f points[4], sfVector2i pos)
 {
-    sfFloatRect bounds = sfVertexArray_getBounds(vertex_array);
-    if (sfFloatRect_contains(&bounds, pos_mouse.x, pos_mouse.y))
-        return 1;
-    else
-        return 0;
+    int i, j, c = 0;
+    for (i = 0, j = 3; i < 4; j = i++) {
+        if ((((points[i].y <= pos.y) && (pos.y < points[j].y)) ||
+            ((points[j].y <= pos.y) && (pos.y < points[i].y))) &&
+            (pos.x < (points[j].x - points[i].x) *
+            (pos.y - points[i].y) /
+            (points[j].y - points[i].y) + points[i].x))
+        c = !c;
+    }
+    return c;
 }
