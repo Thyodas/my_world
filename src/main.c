@@ -11,19 +11,12 @@
 #include <stdlib.h>
 
 void main_loop(data_t data);
+sfVector3f **init_map_3d(int map_x, int map_y);
 
 int main(int argc, char **argv)
 {
     data_t data;
-    data.map.array_3d = malloc(sizeof(sfVector3f *) * MAP_Y);
-    for (int i = 0; i < MAP_Y; i++) {
-        data.map.array_3d[i] = malloc(sizeof(sfVector3f) * MAP_X);
-        for (int j = 0; j < MAP_X; j++) {
-            data.map.array_3d[i][j].x = i;
-            data.map.array_3d[i][j].y = j;
-            data.map.array_3d[i][j].z = 0;
-        }
-    }
+    data.map.array_3d = init_map_3d(MAP_X, MAP_Y);
     main_loop(data);
     return 0;
 }
