@@ -10,9 +10,7 @@
 #include <SFML/System.h>
 #include <math.h>
 #include <stdlib.h>
-
-#define MAP_X 6
-#define MAP_Y 6
+#include "myworld.h"
 
 void print_map(sfVector2f **map)
 {
