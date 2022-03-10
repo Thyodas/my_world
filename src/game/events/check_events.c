@@ -5,10 +5,7 @@
 ** check_events.c
 */
 
-#include "my.h"
 #include "myworld.h"
-#include <math.h>
-#include <stdlib.h>
 
 void rotate_right(sfVector3f **map);
 void rotate_left(sfVector3f **map);

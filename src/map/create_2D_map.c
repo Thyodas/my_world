@@ -5,9 +5,6 @@
 ** create_2D_map.c
 */
 
-#include "my.h"
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
 #include <math.h>
 #include <stdlib.h>
 #include "myworld.h"

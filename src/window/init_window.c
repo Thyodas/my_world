@@ -6,7 +6,6 @@
 */
 
 #include "myworld.h"
-#include <stdlib.h>
 
 sfRenderWindow *init_window(int x, int y)
 {

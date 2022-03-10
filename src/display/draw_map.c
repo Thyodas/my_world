@@ -5,7 +5,6 @@
 ** draw_map.c
 */
 
-#include "my.h"
 #include "myworld.h"
 #include <math.h>
 #include <stdlib.h>

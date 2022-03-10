@@ -5,10 +5,7 @@
 ** main.c
 */
 
-#include "my.h"
 #include "myworld.h"
-#include <math.h>
-#include <stdlib.h>
 
 void main_loop(data_t data);
 sfVector3f **init_map_3d(int map_x, int map_y);

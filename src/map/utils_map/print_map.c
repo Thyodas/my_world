@@ -6,10 +6,6 @@
 */
 
 #include "my.h"
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
-#include <math.h>
-#include <stdlib.h>
 #include "myworld.h"
 
 void print_map(sfVector2f **map)

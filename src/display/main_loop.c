@@ -5,10 +5,7 @@
 ** main_loop.c
 */
 
-#include "my.h"
 #include "myworld.h"
-#include <math.h>
-#include <stdlib.h>
 
 sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data);
 void check_event(data_t *data, int *recalc);
