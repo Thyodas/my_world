@@ -10,44 +10,43 @@
 #include <math.h>
 #include <stdlib.h>
 
+void rotate_right(sfVector3f **map);
+void rotate_left(sfVector3f **map);
+void zoom_in(data_t *data);
+void zoom_out(data_t *data);
+
+void rotate(sfEvent event, sfVector3f **map, int *recalc)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
+        rotate_right(map);
+        *recalc = 1;
+    }
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
+        rotate_left(map);
+        *recalc = 1;
+    }
+}
+
+void zoom(sfEvent event, data_t *data, int *recalc)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyDown) {
+        zoom_out(data);
+        *recalc = 1;
+    }
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
+        zoom_in(data);
+        *recalc = 1;
+    }
+}
+
 void check_event(data_t *data, int *recalc)
 {
-    float angle = DEG_TO_RAD(1);
     sfVector3f **map = data->map.array_3d;
-    while (sfRenderWindow_pollEvent(data->window, &data->event) == sfTrue) {
-        if (data->event.type == sfEvtClosed)
+    sfEvent event = data->event;
+    while (sfRenderWindow_pollEvent(data->window, &event) == sfTrue) {
+        if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
-        if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
-        sfKeyDown) {
-            data->map.factors.x -= 5;
-            data->map.factors.y -= 5;
-            *recalc = 1;
-        }
-        if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
-        sfKeyUp) {
-            data->map.factors.x += 5;
-            data->map.factors.y += 5;
-            *recalc = 1;
-        }
-        if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
-        sfKeyRight) {
-            for (int i = 0; i < MAP_Y; i++) {
-                for (int j = 0; j < MAP_X; j++) {
-                    map[i][j].x = cos(angle) * map[i][j].x - sin(angle) * map[i][j].y;
-                    map[i][j].y = cos(angle) * map[i][j].y + sin(angle) * map[i][j].x;
-                }
-            }
-            *recalc = 1;
-        }
-        if (data->event.type == sfEvtKeyPressed && data->event.key.code ==
-        sfKeyLeft) {
-            for (int i = 0; i < MAP_Y; i++) {
-                for (int j = 0; j < MAP_X; j++) {
-                    map[i][j].x = cos(-angle) * map[i][j].x - sin(-angle) * map[i][j].y;
-                    map[i][j].y = cos(-angle) * map[i][j].y + sin(-angle) * map[i][j].x;
-                }
-            }
-            *recalc = 1;
-        }
+        rotate(event, map, recalc);
+        zoom(event, data, recalc);
     }
 }
