@@ -26,3 +26,13 @@ void load_checker_texture(data_t *data)
     data->textures.checker.size = (sfVector2u){2048, 2048};
     data->textures.checker.loaded = 1;
 }
+
+void load_hover_texture(data_t *data)
+{
+    if (data->textures.hover.loaded == 1)
+        return;
+    data->textures.hover.texture = sfTexture_createFromFile("img/hover.png",
+                                                                NULL);
+    data->textures.hover.size = (sfVector2u){2048, 2048};
+    data->textures.hover.loaded = 1;
+}
