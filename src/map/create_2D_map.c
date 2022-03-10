@@ -29,8 +29,8 @@ void translate_map(sfVector2f **map_2d, sfVector3f **map_3d,
     sfVector2f center_point = project_iso_point(c_x, c_y, 0, factors);
     int offset_x = 930 - center_point.x;
     int offset_y = 510 - center_point.y;
-    for (int i = 0; i < MAP_Y; i++) {
-        for (int j = 0; j < MAP_X; j++) {
+    for (int i = 0; i < MAP_Y; ++i) {
+        for (int j = 0; j < MAP_X; ++j) {
             map_2d[i][j].x += offset_x;
             map_2d[i][j].y += offset_y;
         }
@@ -49,9 +49,9 @@ sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
 sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data)
 {
     sfVector2f **output = malloc(sizeof(sfVector2f *) * MAP_Y);
-    for (int i = 0; i < MAP_Y; i++) {
+    for (int i = 0; i < MAP_Y; ++i) {
         output[i] = malloc(sizeof(sfVector2f) * MAP_X);
-        for (int j = 0; j < MAP_X; j++)
+        for (int j = 0; j < MAP_X; ++j)
             output[i][j] = project_3D_to_2D(map_3d[i][j], data.map.factors);
     }
     translate_map(output, map_3d, data.map.factors);

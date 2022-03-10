@@ -75,7 +75,7 @@ int draw_2d_map(data_t data)
                                 create_state(data.textures.hover.texture)
     };
     int hovered = 0;
-    for (int i = 0; i < MAP_Y - 1; i++)
+    for (int i = 0; i < MAP_Y - 1; ++i)
         draw_vertex_array(data, states, i, &hovered);
     return 0;
 }
