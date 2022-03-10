@@ -29,12 +29,11 @@ void rotate(sfEvent event, sfVector3f **map, int *recalc)
 
 void zoom(sfEvent event, data_t *data, int *recalc)
 {
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyDown) {
-        zoom_out(data);
-        *recalc = 1;
-    }
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyUp) {
-        zoom_in(data);
+    if (event.type == sfEvtMouseWheelScrolled) {
+        if (event.mouseWheelScroll.delta > 0)
+            zoom_out(data);
+        else
+            zoom_in(data);
         *recalc = 1;
     }
 }
