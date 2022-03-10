@@ -17,7 +17,7 @@ void print_map(sfVector2f **map)
     for (int i = 0; i < MAP_Y; i++) {
         my_printf("{");
         for (int j = 0; j < MAP_X; j++) {
-            my_printf("{%.2f, %.2f}", map[i][j].x, map[i][j].y);
+            my_printf("{%.2f, %.2f}\n", map[i][j].x, map[i][j].y);
         }
         my_printf("}\n");
     }
