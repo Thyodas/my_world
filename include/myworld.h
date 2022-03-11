@@ -10,6 +10,7 @@
 
     #include <SFML/Graphics.h>
     #include <SFML/System.h>
+    #include <stdbool.h>
 
     #define MAP_X 10
     #define MAP_Y 10
@@ -36,6 +37,8 @@
         int size_x;
         int size_y;
         sfVector2f factors;
+        sfVector2i hovered_tile;
+        bool is_tile_hovered;
     } map_t;
 
     typedef struct {

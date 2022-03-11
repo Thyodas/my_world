@@ -9,8 +9,6 @@
 
 void load_sand_texture(data_t *data)
 {
-    if (data->textures.sand.loaded == 1)
-        return;
     data->textures.sand.texture = sfTexture_createFromFile("img/sand.jpg",
                                                             NULL);
     data->textures.sand.size = (sfVector2u){800, 709};
@@ -19,8 +17,6 @@ void load_sand_texture(data_t *data)
 
 void load_checker_texture(data_t *data)
 {
-    if (data->textures.checker.loaded == 1)
-        return;
     data->textures.checker.texture = sfTexture_createFromFile("img/check.jpg",
                                                             NULL);
     data->textures.checker.size = (sfVector2u){2048, 2048};
@@ -29,8 +25,6 @@ void load_checker_texture(data_t *data)
 
 void load_hover_texture(data_t *data)
 {
-    if (data->textures.hover.loaded == 1)
-        return;
     data->textures.hover.texture = sfTexture_createFromFile("img/hover.png",
                                                                 NULL);
     data->textures.hover.size = (sfVector2u){2048, 2048};

@@ -6,6 +6,7 @@
 */
 
 #include "myworld.h"
+#include "my.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -44,35 +45,38 @@ sfVertexArray *create_tile(sfVector2f points[4], texture_data_t texture,
     return vertex_array;
 }
 
-void draw_vertex_array(data_t data, sfRenderStates states[2], int i)
+void draw_vertex_array(data_t *data, sfRenderStates states[2], int i)
 {
     sfVertexArray *vertex_array;
     sfVertexArray *hover;
     for (int j = 0; j < MAP_X - 1; ++j) {
-        sfVector2f points[4] = {data.map.array_2d[i][j],
-                                data.map.array_2d[i][j + 1],
-                                data.map.array_2d[i + 1][j + 1],
-                                data.map.array_2d[i + 1][j]};
-        vertex_array = create_tile(points, data.textures.sand, 1);
-        if (pnpoly(points, data.pos_mouse)) {
-            hover = create_tile(points, data.textures.hover, 0);
-            sfRenderWindow_drawVertexArray(data.window, vertex_array,
+        sfVector2f points[4] = {data->map.array_2d[i][j],
+                                data->map.array_2d[i][j + 1],
+                                data->map.array_2d[i + 1][j + 1],
+                                data->map.array_2d[i + 1][j]};
+        vertex_array = create_tile(points, data->textures.sand, 1);
+        if (pnpoly(points, data->pos_mouse)) {
+            hover = create_tile(points, data->textures.hover, 0);
+            sfRenderWindow_drawVertexArray(data->window, vertex_array,
                                             &states[0]);
-            sfRenderWindow_drawVertexArray(data.window, hover, &states[1]);
-            free(hover);
+            sfRenderWindow_drawVertexArray(data->window, hover, &states[1]);
+            data->map.is_tile_hovered = true;
+            data->map.hovered_tile = (sfVector2i){i, j};
+            sfVertexArray_destroy(hover);
         } else
-            sfRenderWindow_drawVertexArray(data.window, vertex_array,
+            sfRenderWindow_drawVertexArray(data->window, vertex_array,
                                             &states[0]);
-        free(vertex_array);
+        sfVertexArray_destroy(vertex_array);
     }
 }
 
-int draw_2d_map(data_t data)
+int draw_2d_map(data_t *data)
 {
-    sfRenderStates states[2] = {create_state(data.textures.sand.texture),
-                                create_state(data.textures.hover.texture)
+    sfRenderStates states[2] = {create_state(data->textures.sand.texture),
+                                create_state(data->textures.hover.texture)
     };
-    for (int i = 0; i < MAP_Y - 1; ++i)
+    data->map.is_tile_hovered = false;
+    for (int i = 0; i < MAP_Y - 1; i++)
         draw_vertex_array(data, states, i);
     return 0;
 }
