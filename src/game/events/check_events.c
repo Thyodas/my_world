@@ -31,6 +31,8 @@ void zoom(sfEvent event, data_t *data, int *recalc)
         if (result_x > 0 && result_y > 0) {
             data->map.factors.x = result_x;
             data->map.factors.y = result_y;
+            data->pos_center.x = data->pos_mouse.x - data->pos_board_center.x;
+            data->pos_center.y = data->pos_mouse.y - data->pos_board_center.x;
             *recalc = 1;
         }
     }
@@ -59,6 +61,9 @@ void tool_event(sfEvent event, data_t *data, int *recalc)
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
             data->map.tiles[y][x].texture = data->textures.sand;
+        }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyW) {
+            data->map.tiles[y][x].texture = data->textures.checker;
         }
     }
 }

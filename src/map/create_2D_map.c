@@ -10,7 +10,6 @@
 #include "myworld.h"
 
 float calc_dist(sfVector2f point1, sfVector2f point2);
-void free_2d_map(sfVector2f **map_2d);
 
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
 {
@@ -22,22 +21,6 @@ sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
     return vector;
 }
 
-void translate_map(sfVector2f **map_2d, sfVector3f **map_3d,
-                    sfVector2f factors)
-{
-    float c_x = (map_3d[0][0].x + map_3d[MAP_Y - 1][MAP_X - 1].x) / 2;
-    float c_y = (map_3d[MAP_X - 1][0].y + map_3d[0][MAP_Y - 1].y) / 2;
-    sfVector2f center_point = project_iso_point(c_x, c_y, 0, factors);
-    int offset_x = 930 - center_point.x;
-    int offset_y = 510 - center_point.y;
-    for (int i = 0; i < MAP_Y; ++i) {
-        for (int j = 0; j < MAP_X; ++j) {
-            map_2d[i][j].x += offset_x;
-            map_2d[i][j].y += offset_y;
-        }
-    }
-}
-
 sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
 {
     float x  = coords_3D.x;
@@ -47,35 +30,33 @@ sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
     return coords_2D;
 }
 
-sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data)
+void translate_map_to_point(data_t *data)
 {
-    if (data.map.array_2d != NULL)
-        free_2d_map(data.map.array_2d);
-    sfVector2f **output = malloc(sizeof(sfVector2f *) * MAP_Y);
-    for (int i = 0; i < MAP_Y; ++i) {
-        output[i] = malloc(sizeof(sfVector2f) * MAP_X);
-        for (int j = 0; j < MAP_X; ++j)
-            output[i][j] = project_3D_to_2D(map_3d[i][j], data.map.factors);
-    }
-    translate_map(output, map_3d, data.map.factors);
-    return output;
-}
-
-void translate_map2(data_t *data)
-{
-    float c_x = (data->map.tiles[0][0].coord_3d.x
-    + data->map.tiles[MAP_Y - 1][MAP_X - 1].coord_3d.x) / 2;
-    float c_y = (data->map.tiles[MAP_X - 1][0].coord_3d.y
-    + data->map.tiles[0][MAP_Y - 1].coord_3d.y) / 2;
-    sfVector2f center_point = project_iso_point(c_x, c_y, 0, data->map.factors);
-    int offset_x = 930 - center_point.x;
-    int offset_y = 510 - center_point.y;
     for (int i = 0; i < MAP_Y; ++i) {
         for (int j = 0; j < MAP_X; ++j) {
-            data->map.tiles[i][j].coord_2d.x += offset_x;
-            data->map.tiles[i][j].coord_2d.y += offset_y;
+            data->map.tiles[i][j].coord_2d.x += data->pos_center.x;
+            data->map.tiles[i][j].coord_2d.y += data->pos_center.y;
         }
     }
+}
+
+sfVector2f calculate_center_point(data_t *data)
+{
+    float c_x = (data->map.tiles[0][0].coord_3d.x
+                 + data->map.tiles[MAP_Y - 1][MAP_X - 1].coord_3d.x) / 2;
+    float c_y = (data->map.tiles[MAP_X - 1][0].coord_3d.y
+                 + data->map.tiles[0][MAP_Y - 1].coord_3d.y) / 2;
+    return (project_iso_point(c_x, c_y, 0, data->map.factors));
+}
+
+void init_center_point(data_t *data)
+{
+    sfVector2f center_point = calculate_center_point(data);
+    data->pos_board_center = center_point;
+    center_point.x = 930 - center_point.x;
+    center_point.y = 510 - center_point.y;
+    data->pos_center.x = center_point.x;
+    data->pos_center.y = center_point.y;
 }
 
 void calculate_2d_tiles(data_t *data)
@@ -85,5 +66,5 @@ void calculate_2d_tiles(data_t *data)
             data->map.tiles[i][j].coord_2d = project_3D_to_2D(data->map
                 .tiles[i][j].coord_3d, data->map.factors);
     }
-    translate_map2(data);
+    translate_map_to_point(data);
 }
