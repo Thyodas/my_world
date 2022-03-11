@@ -60,3 +60,30 @@ sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data)
     translate_map(output, map_3d, data.map.factors);
     return output;
 }
+
+void translate_map2(data_t *data)
+{
+    float c_x = (data->map.tiles[0][0].coord_3d.x
+    + data->map.tiles[MAP_Y - 1][MAP_X - 1].coord_3d.x) / 2;
+    float c_y = (data->map.tiles[MAP_X - 1][0].coord_3d.y
+    + data->map.tiles[0][MAP_Y - 1].coord_3d.y) / 2;
+    sfVector2f center_point = project_iso_point(c_x, c_y, 0, data->map.factors);
+    int offset_x = 930 - center_point.x;
+    int offset_y = 510 - center_point.y;
+    for (int i = 0; i < MAP_Y; ++i) {
+        for (int j = 0; j < MAP_X; ++j) {
+            data->map.tiles[i][j].coord_2d.x += offset_x;
+            data->map.tiles[i][j].coord_2d.y += offset_y;
+        }
+    }
+}
+
+void calculate_2d_tiles(data_t *data)
+{
+    for (int i = 0; i < MAP_Y; ++i) {
+        for (int j = 0; j < MAP_X; ++j)
+            data->map.tiles[i][j].coord_2d = project_3D_to_2D(data->map
+                .tiles[i][j].coord_3d, data->map.factors);
+    }
+    translate_map2(data);
+}

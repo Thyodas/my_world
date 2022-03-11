@@ -8,17 +8,17 @@
 #include "myworld.h"
 #include "my.h"
 
-void rotate_right(sfVector3f **map);
-void rotate_left(sfVector3f **map);
+void rotate_right(data_t *data);
+void rotate_left(data_t *data);
 
-void rotate(sfEvent event, sfVector3f **map, int *recalc)
+void rotate(sfEvent event, data_t *data, int *recalc)
 {
     if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
-        rotate_right(map);
+        rotate_right(data);
         *recalc = 1;
     }
     if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
-        rotate_left(map);
+        rotate_left(data);
         *recalc = 1;
     }
 }
@@ -38,36 +38,38 @@ void zoom(sfEvent event, data_t *data, int *recalc)
 
 void tool_event(sfEvent event, data_t *data, int *recalc)
 {
-    if (event.type == sfEvtMouseButtonPressed && data->map.is_tile_hovered) {
-        if (event.mouseButton.button == sfMouseLeft) {
-            int i = data->map.hovered_tile.x;
-            int j = data->map.hovered_tile.y;
-            data->map.array_3d[i][j].z += 1;
-            data->map.array_3d[i + 1][j].z += 1;
-            data->map.array_3d[i][j + 1].z += 1;
-            data->map.array_3d[i + 1][j + 1].z += 1;
+    if (data->map.is_tile_hovered) {
+        int y = data->map.hovered_tile.y;
+        int x = data->map.hovered_tile.x;
+        if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
+        sfMouseLeft) {
+            data->map.tiles[y][x].coord_3d.z += 1;
+            data->map.tiles[y + 1][x].coord_3d.z += 1;
+            data->map.tiles[y][x + 1].coord_3d.z += 1;
+            data->map.tiles[y + 1][x + 1].coord_3d.z += 1;
             *recalc = 1;
         }
-        if (event.mouseButton.button == sfMouseRight) {
-            int i = data->map.hovered_tile.x;
-            int j = data->map.hovered_tile.y;
-            data->map.array_3d[i][j].z -= 1;
-            data->map.array_3d[i + 1][j].z -= 1;
-            data->map.array_3d[i][j + 1].z -= 1;
-            data->map.array_3d[i + 1][j + 1].z -= 1;
+        if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
+        sfMouseRight) {
+            data->map.tiles[y][x].coord_3d.z -= 1;
+            data->map.tiles[y + 1][x].coord_3d.z -= 1;
+            data->map.tiles[y][x + 1].coord_3d.z -= 1;
+            data->map.tiles[y + 1][x + 1].coord_3d.z -= 1;
             *recalc = 1;
+        }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
+            data->map.tiles[y][x].texture = data->textures.sand;
         }
     }
 }
 
 void check_event(data_t *data, int *recalc)
 {
-    sfVector3f **map = data->map.array_3d;
     sfEvent event = data->event;
     while (sfRenderWindow_pollEvent(data->window, &event) == sfTrue) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
-        rotate(event, map, recalc);
+        rotate(event, data, recalc);
         zoom(event, data, recalc);
         tool_event(event, data, recalc);
     }
