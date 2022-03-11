@@ -12,8 +12,8 @@
     #include <SFML/System.h>
     #include <stdbool.h>
 
-    #define MAP_X 10
-    #define MAP_Y 10
+    #define MAP_X 100
+    #define MAP_Y 100
     #define M_PI 3.14159265358979323846
     #define DEG_TO_RAD(x) ((x) * M_PI / 180)
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -32,8 +32,15 @@
     } textures_t;
 
     typedef struct {
+        sfVector2f coord_2d;
+        sfVector3f coord_3d;
+        texture_data_t texture;
+    } tile_t;
+
+    typedef struct {
         sfVector2f **array_2d;
         sfVector3f **array_3d;
+        tile_t **tiles;
         int size_x;
         int size_y;
         sfVector2f factors;

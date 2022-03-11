@@ -12,19 +12,15 @@ sfVector2f **create_2d_map(sfVector3f **map_3d, data_t data);
 void check_event(data_t *data, int *recalc);
 int draw_2d_map(data_t *data);
 sfRenderWindow *init_window(int x, int y);
-void load_sand_texture(data_t *data);
-void load_checker_texture(data_t *data);
 void print_map(sfVector2f **map);
 float calc_dist(sfVector2f point1, sfVector2f point2);
-void load_hover_texture(data_t *data);
+void load_textures(data_t *data);
 
 void init_data(data_t *data)
 {
     data->window = init_window(1920, 1080);
     data->map.is_tile_hovered = false;
-    load_sand_texture(data);
-    load_checker_texture(data);
-    load_hover_texture(data);
+    load_textures(data);
     data->map.factors = (sfVector2f){15, 15};
 }
 

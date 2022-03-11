@@ -7,26 +7,17 @@
 
 #include "myworld.h"
 
-void load_sand_texture(data_t *data)
+static void load_texture_data(texture_data_t *texture, char *path, int size_x,
+int size_y)
 {
-    data->textures.sand.texture = sfTexture_createFromFile("img/sand.jpg",
-                                                            NULL);
-    data->textures.sand.size = (sfVector2u){800, 709};
-    data->textures.sand.loaded = 1;
+    texture->texture = sfTexture_createFromFile(path, NULL);
+    texture->size = (sfVector2u){size_x, size_y};
+    texture->loaded = 1;
 }
 
-void load_checker_texture(data_t *data)
+void load_textures(data_t *data)
 {
-    data->textures.checker.texture = sfTexture_createFromFile("img/check.jpg",
-                                                            NULL);
-    data->textures.checker.size = (sfVector2u){2048, 2048};
-    data->textures.checker.loaded = 1;
-}
-
-void load_hover_texture(data_t *data)
-{
-    data->textures.hover.texture = sfTexture_createFromFile("img/hover.png",
-                                                                NULL);
-    data->textures.hover.size = (sfVector2u){2048, 2048};
-    data->textures.hover.loaded = 1;
+    load_texture_data(&data->textures.hover, "img/hover.png", 2048, 2048);
+    load_texture_data(&data->textures.checker, "img/check.jpg", 2048, 2048);
+    load_texture_data(&data->textures.sand, "img/sand.jpg", 800, 709);
 }
