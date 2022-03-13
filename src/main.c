@@ -22,7 +22,7 @@ void init_data(data_t *data)
     data->map.is_tile_hovered = false;
     load_textures(data);
     init_map_tiles(data, MAP_X, MAP_Y);
-    data->map.factors = (sfVector2f){15, 15};
+    data->map.factors = (sfVector2f){50, 50};
     init_center_point(data);
 }
 
