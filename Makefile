@@ -17,7 +17,8 @@ SRC = src/main.c \
 	  src/game/events/rotate.c \
 	  src/utils/math/calc_dist.c \
 	  src/utils/check_pos_in_tile.c \
-	  src/map/utils_map/free_map.c
+	  src/map/utils_map/free_map.c \
+	  src/map/translate_map.c
 
 OBJ = $(SRC:.c=.o)
 
