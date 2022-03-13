@@ -93,6 +93,7 @@ $(NAME): $(OBJ)
 		 cp my.h ../../include/my.h
 		 cp my_list/my_list.h ../../include/my_list.h
 		 cp $(NAME) ../$(NAME)
+		 rm -f $(OBJ)
 
 clean:
 	   rm -f $(OBJ)
