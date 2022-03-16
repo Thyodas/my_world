@@ -20,4 +20,5 @@ void load_textures(data_t *data)
     load_texture_data(&data->textures.hover, "img/hover.png", 2048, 2048);
     load_texture_data(&data->textures.checker, "img/check.jpg", 2048, 2048);
     load_texture_data(&data->textures.sand, "img/sand.jpg", 800, 709);
+    load_texture_data(&data->ui.textures.bucket, "img/bucket.png", 62, 62);
 }

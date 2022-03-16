@@ -14,6 +14,7 @@ void check_event(data_t *data, int *recalc);
 int draw_2d_map(data_t *data);
 void print_map(sfVector2f **map);
 float calc_dist(sfVector2f point1, sfVector2f point2);
+void draw_interface(data_t *data);
 
 void main_loop(data_t data)
 {
@@ -24,9 +25,10 @@ void main_loop(data_t data)
             calculate_2d_tiles(&data);
             recalc = 0;
         }
-        sfRenderWindow_clear(data.window, sfBlue);
+        sfRenderWindow_clear(data.window, (sfColor){52, 192, 235, 100});
         check_event(&data, &recalc);
         draw_2d_map(&data);
+        draw_interface(&data);
         sfRenderWindow_display(data.window);
     }
 }
