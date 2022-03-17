@@ -15,6 +15,7 @@ int draw_2d_map(data_t *data);
 void print_map(sfVector2f **map);
 float calc_dist(sfVector2f point1, sfVector2f point2);
 void draw_interface(data_t *data);
+int check_interface_hovering(data_t *data);
 
 void main_loop(data_t data)
 {
@@ -25,7 +26,8 @@ void main_loop(data_t data)
             calculate_2d_tiles(&data);
             recalc = 0;
         }
-        sfRenderWindow_clear(data.window, (sfColor){52, 192, 235, 100});
+        sfRenderWindow_clear(data.window, (sfColor){52, 192, 235, 30});
+        check_interface_hovering(&data);
         check_event(&data, &recalc);
         draw_2d_map(&data);
         draw_interface(&data);

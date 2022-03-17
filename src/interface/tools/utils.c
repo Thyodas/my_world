@@ -18,8 +18,14 @@ void reset_selected_tool(data_t *data)
 
 void set_selected_tool(data_t *data, enum buttons_pos btn)
 {
-    // TODO: Hover color (sfColor){227, 248, 250, 255}
     sfSprite_setColor(data->ui.buttons[btn].sprite,
         (sfColor){182, 237, 255, 255});
     data->ui.buttons[btn].state = SELECTED;
+}
+
+void set_hovered_tool(data_t *data, enum buttons_pos btn)
+{
+    sfSprite_setColor(data->ui.buttons[btn].sprite,
+        (sfColor){227, 248, 250, 255});
+    data->ui.buttons[btn].state = HOVERED;
 }
