@@ -10,6 +10,7 @@ SRC = src/main.c \
 	  src/display/draw_interface.c \
 	  src/display/main_loop.c \
 	  src/game/events/check_events.c \
+	  src/game/events/check_interface.c \
 	  src/map/utils_map/print_map.c \
 	  src/map/create_2D_map.c \
 	  src/map/utils_map/init_map.c \
@@ -19,7 +20,11 @@ SRC = src/main.c \
 	  src/utils/math/calc_dist.c \
 	  src/utils/check_pos_in_tile.c \
 	  src/map/utils_map/free_map.c \
-	  src/interface/buttons.c
+	  src/interface/buttons.c \
+	  src/interface/states.c \
+	  src/interface/tools/button_actions.c \
+	  src/interface/tools/utils.c \
+	  src/interface/backgrounds.c
 
 OBJ = $(SRC:.c=.o)
 

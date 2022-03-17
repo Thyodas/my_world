@@ -10,6 +10,7 @@
 
 void rotate_right(data_t *data);
 void rotate_left(data_t *data);
+void check_interface(data_t *data);
 
 void rotate(sfEvent event, data_t *data, int *recalc)
 {
@@ -44,14 +45,6 @@ void tool_event(sfEvent event, data_t *data, int *recalc)
         int y = data->map.hovered_tile.y;
         int x = data->map.hovered_tile.x;
         if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
-        sfMouseLeft) {
-            data->map.tiles[y][x].coord_3d.z += 1;
-            data->map.tiles[y + 1][x].coord_3d.z += 1;
-            data->map.tiles[y][x + 1].coord_3d.z += 1;
-            data->map.tiles[y + 1][x + 1].coord_3d.z += 1;
-            *recalc = 1;
-        }
-        if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
         sfMouseRight) {
             data->map.tiles[y][x].coord_3d.z -= 1;
             data->map.tiles[y + 1][x].coord_3d.z -= 1;
@@ -68,6 +61,14 @@ void tool_event(sfEvent event, data_t *data, int *recalc)
     }
 }
 
+void mouse_event(sfEvent event, data_t *data, int *recalc)
+{
+    if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
+        sfMouseLeft) {
+        check_interface(data);
+    }
+}
+
 void check_event(data_t *data, int *recalc)
 {
     sfEvent event = data->event;
@@ -77,5 +78,6 @@ void check_event(data_t *data, int *recalc)
         rotate(event, data, recalc);
         zoom(event, data, recalc);
         tool_event(event, data, recalc);
+        mouse_event(event, data, recalc);
     }
 }

@@ -12,8 +12,8 @@
     #include <SFML/System.h>
     #include <stdbool.h>
 
-    #define MAP_X 100
-    #define MAP_Y 100
+    #define MAP_X 10
+    #define MAP_Y 10
     #define M_PI 3.14159265358979323846
     #define DEG_TO_RAD(x) ((x) * M_PI / 180)
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -57,6 +57,7 @@
         sfVector2i pos_mouse;
         sfVector2i pos_center;
         sfVector2f pos_board_center;
+        bool is_mouse_on_ui;
     } data_t;
 
 #endif /* MYWORLD_H_ */

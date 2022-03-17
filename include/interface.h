@@ -9,10 +9,11 @@
     #define INTERFACE_H_
 
     enum buttons_pos {
-        BTN_BUCKET,/*
+        BTN_BUCKET,
         BTN_GRID_SIZE,
         BTN_PEN_WIDTH,
         BTN_LEVEL,
+        BTN_PICKER,/*
         BTN_SETTINGS,
         BTN_OPEN_FILE,
         BTN_SAVE_FILE,*/
@@ -20,15 +21,14 @@
     };
 
     enum background_pos {
-        BACKGROUND_TOOLS,
-        BACKGROUND_SETTINGS,
+        BACKGROUND_TOOLS,/*
+        BACKGROUND_SETTINGS,*/
         NB_BACKGROUND
     };
 
     enum mouse_state {
         IDLE,
         HOVERED,
-        CLICKED,
         SELECTED
     };
 
@@ -47,13 +47,19 @@
 
     typedef struct {
         texture_data_t bucket;
+        texture_data_t size;
+        texture_data_t tools_bg;
+        texture_data_t pen_width;
+        texture_data_t level;
+        texture_data_t picker;
+        texture_data_t selected;
     } ui_textures;
 
     typedef struct {
         button_t buttons[NB_BUTTON];
         background_t backgrounds[NB_BACKGROUND];
+        sfSprite *selected_sprite;
         sfRenderStates hover_state;
-        sfRenderStates clicked_state;
         sfRenderStates selected_state;
         ui_textures textures;
     } interface_t;
