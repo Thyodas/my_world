@@ -10,21 +10,21 @@
 
 void rotate_right(data_t *data);
 void rotate_left(data_t *data);
-void check_interface(data_t *data);
+bool check_interface(data_t *data);
 
-void rotate(sfEvent event, data_t *data, int *recalc)
+void rotate(data_t *data, sfEvent event)
 {
     if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
         rotate_right(data);
-        *recalc = 1;
+        data->recalc = true;
     }
     if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
         rotate_left(data);
-        *recalc = 1;
+        data->recalc = true;
     }
 }
 
-void zoom(sfEvent event, data_t *data, int *recalc)
+void zoom(data_t *data, sfEvent event)
 {
     if (event.type == sfEvtMouseWheelScrolled) {
         float result_x = data->map.factors.x + event.mouseWheelScroll.delta;
@@ -34,23 +34,23 @@ void zoom(sfEvent event, data_t *data, int *recalc)
             data->map.factors.y = result_y;
             data->pos_center.x = data->pos_mouse.x - data->pos_board_center.x;
             data->pos_center.y = data->pos_mouse.y - data->pos_board_center.x;
-            *recalc = 1;
+            data->recalc = true;
         }
     }
 }
 
-void tool_event(sfEvent event, data_t *data, int *recalc)
+void tool_event(data_t *data, sfEvent event)
 {
     if (data->map.is_tile_hovered) {
         int y = data->map.hovered_tile.y;
         int x = data->map.hovered_tile.x;
         if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
         sfMouseRight) {
-            data->map.tiles[y][x].coord_3d.z -= 1;
-            data->map.tiles[y + 1][x].coord_3d.z -= 1;
+            data->map.tiles[y][x].coord_3d.z += 1;
+            /*data->map.tiles[y + 1][x].coord_3d.z -= 1;
             data->map.tiles[y][x + 1].coord_3d.z -= 1;
-            data->map.tiles[y + 1][x + 1].coord_3d.z -= 1;
-            *recalc = 1;
+            data->map.tiles[y + 1][x + 1].coord_3d.z -= 1;*/
+            data->recalc = true;
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
             data->map.tiles[y][x].texture = data->textures.sand;
@@ -61,23 +61,28 @@ void tool_event(sfEvent event, data_t *data, int *recalc)
     }
 }
 
-void mouse_event(sfEvent event, data_t *data, int *recalc)
+void mouse_event(data_t *data, sfEvent event)
 {
-    if (event.type == sfEvtMouseButtonPressed && event.mouseButton.button ==
+    if (sfMouse_isButtonPressed(sfMouseLeft) || !data->mouse_released) {
+        data->mouse_released = false;
+        if (!check_interface(data))
+            data->selected_tool_func(data, event);
+    }
+    if (event.type == sfEvtMouseButtonReleased && event.mouseButton.button ==
         sfMouseLeft) {
-        check_interface(data);
+        data->mouse_released = true;
     }
 }
 
-void check_event(data_t *data, int *recalc)
+void check_event(data_t *data)
 {
     sfEvent event = data->event;
     while (sfRenderWindow_pollEvent(data->window, &event) == sfTrue) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
-        rotate(event, data, recalc);
-        zoom(event, data, recalc);
-        tool_event(event, data, recalc);
-        mouse_event(event, data, recalc);
+        rotate(data, event);
+        zoom(data, event);
+        tool_event(data, event);
+        mouse_event(data, event);
     }
 }

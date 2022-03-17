@@ -11,6 +11,7 @@ SRC = src/main.c \
 	  src/display/main_loop.c \
 	  src/game/events/check_events.c \
 	  src/game/events/check_interface.c \
+	  src/game/events/tools/on_click_func.c \
 	  src/map/utils_map/print_map.c \
 	  src/map/create_2D_map.c \
 	  src/map/utils_map/init_map.c \
@@ -52,7 +53,7 @@ title:
 
 $(NAME): make_lib title $(OBJ)
 		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy -lcsfml-graphics \
-		 -lcsfml-system -lm
+		 -lcsfml-system -lcsfml-window -lm
 		 rm -f $(OBJ)
 
 clean:

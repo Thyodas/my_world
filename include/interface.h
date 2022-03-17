@@ -20,6 +20,8 @@
         NB_BUTTON
     };
 
+    #define NB_TOOL BTN_PICKER
+
     enum background_pos {
         BACKGROUND_TOOLS,/*
         BACKGROUND_SETTINGS,*/
