@@ -29,7 +29,7 @@ void set_tooltip_text(data_t *data, char *text)
 void load_tooltips(data_t *data)
 {
     sfTexture *texture = sfTexture_createFromImage(
-        sfImage_createFromColor(10, 10, (sfColor){0, 0, 0, 100}), NULL);
+        sfImage_createFromColor(10, 10, (sfColor){0, 0, 0, 200}), NULL);
     data->ui.tooltip.is_visible = true;
     data->ui.tooltip.background.sprite = sfSprite_create();
     sfSprite_setTexture(data->ui.tooltip.background.sprite, texture, false);

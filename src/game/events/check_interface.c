@@ -15,7 +15,7 @@ void reset_hovered_tool(data_t *data);
 void set_tooltip_text(data_t *data, char *text);
 void set_tooltip_pos(data_t *data, float x, float y);
 
-static char *TOOLTIP_TEXT[] = {
+static const char *TOOLTIP_TEXT[] = {
     "Bucket\nLeft click on the tile you want to modify.",
     "Size\nLorem ipsum dolor sit amet",
     "Pen width\nLorem ipsum dolor sit amet",
