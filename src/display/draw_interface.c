@@ -11,8 +11,17 @@
 static void draw_backgrounds(data_t *data)
 {
     for (int i = 0 ; i < NB_BACKGROUND; ++i) {
-        sfRenderWindow_drawSprite(data->window, data->ui.backgrounds[i].sprite, 
+        sfRenderWindow_drawSprite(data->window, data->ui.backgrounds[i].sprite,
             NULL);
+    }
+}
+
+static void draw_tooltips(data_t *data)
+{
+    if (data->ui.tooltip.is_visible) {
+        sfRenderWindow_drawSprite(data->window,
+            data->ui.tooltip.background.sprite, NULL);
+        sfRenderWindow_drawText(data->window, data->ui.tooltip.text, NULL);
     }
 }
 
@@ -27,10 +36,10 @@ static void draw_buttons(data_t *data)
                 data->ui.textures.selected.texture,
                 NULL
             };
-            sfRenderWindow_drawSprite(data->window, data->ui.selected_sprite, 
+            sfRenderWindow_drawSprite(data->window, data->ui.selected_sprite,
                 &state);
         } else*/
-        sfRenderWindow_drawSprite(data->window, data->ui.buttons[i].sprite, 
+        sfRenderWindow_drawSprite(data->window, data->ui.buttons[i].sprite,
             NULL);
     }
 }
@@ -39,4 +48,5 @@ void draw_interface(data_t *data)
 {
     draw_backgrounds(data);
     draw_buttons(data);
+    draw_tooltips(data);
 }

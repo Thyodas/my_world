@@ -49,6 +49,7 @@ void reset_hovered_tool(data_t *data)
         if (data->ui.buttons[i].state == HOVERED)
             set_idle_tool(data, i);
     }
+    data->ui.tooltip.is_visible = false;
 }
 
 void reset_selected_tool(data_t *data)

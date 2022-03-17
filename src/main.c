@@ -18,6 +18,7 @@ void init_center_point(data_t *data);
 void load_buttons(data_t *data);
 void load_backgrounds(data_t *data);
 void load_states(data_t *data);
+void load_tooltips(data_t *data);
 void set_selected_tool(data_t *data, enum buttons_pos btn);
 
 void init_data(data_t *data)
@@ -29,6 +30,7 @@ void init_data(data_t *data)
     load_buttons(data);
     load_backgrounds(data);
     load_states(data);
+    load_tooltips(data);
     set_selected_tool(data, BTN_BUCKET);
     init_map_tiles(data, MAP_X, MAP_Y);
     data->map.factors = (sfVector2f){15, 15};

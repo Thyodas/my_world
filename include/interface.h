@@ -48,6 +48,12 @@
     } background_t;
 
     typedef struct {
+        sfText *text;
+        background_t background;
+        bool is_visible;
+    } tooltip_t;
+
+    typedef struct {
         texture_data_t bucket;
         texture_data_t size;
         texture_data_t tools_bg;
@@ -61,9 +67,8 @@
         button_t buttons[NB_BUTTON];
         background_t backgrounds[NB_BACKGROUND];
         sfSprite *selected_sprite;
-        sfRenderStates hover_state;
-        sfRenderStates selected_state;
         ui_textures textures;
+        tooltip_t tooltip;
     } interface_t;
 
 #endif /* INTERFACE_H_ */
