@@ -44,6 +44,6 @@ void init_center_point(data_t *data)
     data->pos_board_center = center_point;
     center_point.x = 930 - center_point.x;
     center_point.y = 510 - center_point.y;
-    data->pos_center.x = center_point.x;
-    data->pos_center.y = center_point.y;
+    data->translation_point.x = center_point.x;
+    data->translation_point.y = center_point.y;
 }

@@ -13,7 +13,7 @@ int tool_pen_width(data_t *data, sfEvent event);
 int tool_level(data_t *data, sfEvent event);
 int tool_picker(data_t *data, sfEvent event);
 
-int (*tool_function[])(data_t *data, sfEvent event) = {
+int (*const tool_function[])(data_t *data, sfEvent event) = {
     tool_bucket,
     tool_size,
     tool_pen_width,
