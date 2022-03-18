@@ -13,8 +13,8 @@
     #include <SFML/Window.h>
     #include <stdbool.h>
 
-    #define MAP_X 200
-    #define MAP_Y 200
+    #define MAP_X 10
+    #define MAP_Y 10
     #define M_PI 3.14159265358979323846
     #define DEG_TO_RAD(x) ((x) * M_PI / 180)
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -56,9 +56,8 @@
         interface_t ui;
         sfEvent event;
         sfVector2i pos_mouse;
-        sfVector2i pos_center;
+        sfVector2i translation_point;
         sfVector2f pos_board_center;
-        bool mouse_released;
         bool is_mouse_on_ui;
         bool recalc;
         texture_data_t selected_texture;

@@ -34,8 +34,8 @@ void translate_map_to_point(data_t *data)
 {
     for (int i = 0; i < MAP_Y; ++i) {
         for (int j = 0; j < MAP_X; ++j) {
-            data->map.tiles[i][j].coord_2d.x += data->pos_center.x;
-            data->map.tiles[i][j].coord_2d.y += data->pos_center.y;
+            data->map.tiles[i][j].coord_2d.x += data->translation_point.x;
+            data->map.tiles[i][j].coord_2d.y += data->translation_point.y;
         }
     }
 }
@@ -49,14 +49,14 @@ sfVector2f calculate_center_point(data_t *data)
     return (project_iso_point(c_x, c_y, 0, data->map.factors));
 }
 
-void init_center_point(data_t *data)
+void init_translation_point(data_t *data)
 {
     sfVector2f center_point = calculate_center_point(data);
     data->pos_board_center = center_point;
     center_point.x = 930 - center_point.x;
     center_point.y = 510 - center_point.y;
-    data->pos_center.x = center_point.x;
-    data->pos_center.y = center_point.y;
+    data->translation_point.x = center_point.x;
+    data->translation_point.y = center_point.y;
 }
 
 void calculate_2d_tiles(data_t *data)
