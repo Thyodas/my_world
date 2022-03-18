@@ -7,10 +7,13 @@
 
 SRC = src/main.c \
 	  src/display/draw_map.c \
+	  src/display/draw_interface.c \
 	  src/display/main_loop.c \
 	  src/game/events/check_events.c \
+	  src/game/events/check_interface.c \
+	  src/game/events/tools/on_click_func.c \
 	  src/map/utils_map/print_map.c \
-	  src/map/create_2D_map.c \
+	  src/map/create_2d_map.c \
 	  src/map/utils_map/init_map.c \
 	  src/window/init_window.c \
 	  src/textures/load_textures.c \
@@ -18,7 +21,12 @@ SRC = src/main.c \
 	  src/utils/math/calc_dist.c \
 	  src/utils/check_pos_in_tile.c \
 	  src/map/utils_map/free_map.c \
-	  src/map/translate_map.c
+	  src/interface/buttons.c \
+	  src/interface/states.c \
+	  src/interface/tools/button_actions.c \
+	  src/interface/tools/utils.c \
+	  src/interface/backgrounds.c \
+	  src/interface/tooltips.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -46,7 +54,7 @@ title:
 
 $(NAME): make_lib title $(OBJ)
 		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy -lcsfml-graphics \
-		 -lcsfml-system -lm
+		 -lcsfml-system -lcsfml-window -lm
 		 rm -f $(OBJ)
 
 clean:

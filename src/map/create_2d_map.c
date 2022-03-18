@@ -10,7 +10,6 @@
 #include "myworld.h"
 
 float calc_dist(sfVector2f point1, sfVector2f point2);
-void init_center_point(data_t *data);
 
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
 {
@@ -22,8 +21,7 @@ sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors)
     return vector;
 }
 
-sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors, int i,
-                            int j)
+sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
 {
     float x  = coords_3D.x;
     float y = coords_3D.y;
@@ -36,8 +34,8 @@ void translate_map_to_point(data_t *data)
 {
     for (int i = 0; i < MAP_Y; ++i) {
         for (int j = 0; j < MAP_X; ++j) {
-            data->map.tiles[i][j].coord_2d.x += data->pos_center.x;
-            data->map.tiles[i][j].coord_2d.y += data->pos_center.y;
+            data->map.tiles[i][j].coord_2d.x += data->translation_point.x;
+            data->map.tiles[i][j].coord_2d.y += data->translation_point.y;
         }
     }
 }
@@ -51,13 +49,22 @@ sfVector2f calculate_center_point(data_t *data)
     return (project_iso_point(c_x, c_y, 0, data->map.factors));
 }
 
+void init_translation_point(data_t *data)
+{
+    sfVector2f center_point = calculate_center_point(data);
+    data->pos_board_center = center_point;
+    center_point.x = 930 - center_point.x;
+    center_point.y = 510 - center_point.y;
+    data->translation_point.x = center_point.x;
+    data->translation_point.y = center_point.y;
+}
+
 void calculate_2d_tiles(data_t *data)
 {
-    init_center_point(data);
     for (int i = 0; i < MAP_Y; ++i) {
         for (int j = 0; j < MAP_X; ++j)
             data->map.tiles[i][j].coord_2d = project_3D_to_2D(data->map
-                .tiles[i][j].coord_3d, data->map.factors, i, j);
+                .tiles[i][j].coord_3d, data->map.factors);
     }
     translate_map_to_point(data);
 }

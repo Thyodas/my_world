@@ -10,6 +10,7 @@
 
     #include <SFML/Graphics.h>
     #include <SFML/System.h>
+    #include <SFML/Window.h>
     #include <stdbool.h>
 
     #define MAP_X 10
@@ -24,6 +25,8 @@
         sfVector2u size;
         int loaded;
     } texture_data_t;
+
+    #include "interface.h"
 
     typedef struct {
         texture_data_t sand;
@@ -50,10 +53,15 @@
         sfRenderWindow *window;
         textures_t textures;
         map_t map;
+        interface_t ui;
         sfEvent event;
         sfVector2i pos_mouse;
-        sfVector2i pos_center;
+        sfVector2i translation_point;
         sfVector2f pos_board_center;
+        bool is_mouse_on_ui;
+        bool recalc;
+        texture_data_t selected_texture;
+        int (*selected_tool_func)();
     } data_t;
 
 #endif /* MYWORLD_H_ */
