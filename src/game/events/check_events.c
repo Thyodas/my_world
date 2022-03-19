@@ -12,15 +12,18 @@ void rotate_right(data_t *data);
 void rotate_left(data_t *data);
 bool check_interface(data_t *data);
 sfVector2f calculate_center_point(data_t *data);
+void sort_tiles(data_t *data);
 
 void rotate(data_t *data, sfEvent event)
 {
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyRight) {
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyRight) {
         rotate_right(data);
+        sort_tiles(data);
         data->recalc = true;
     }
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyLeft) {
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyLeft) {
         rotate_left(data);
+        sort_tiles(data);
         data->recalc = true;
     }
 }

@@ -8,7 +8,6 @@
 #include "myworld.h"
 
 void main_loop(data_t *data);
-sfVector3f **init_map_3d(int map_x, int map_y);
 void free_3d_map(sfVector3f **map_3d);
 void load_textures(data_t *data);
 sfRenderWindow *init_window(int x, int y);
@@ -20,6 +19,7 @@ void load_backgrounds(data_t *data);
 void load_states(data_t *data);
 void load_tooltips(data_t *data);
 void set_selected_tool(data_t *data, enum buttons_pos btn);
+void sort_tiles(data_t *data);
 
 void init_data(data_t *data)
 {
@@ -35,6 +35,7 @@ void init_data(data_t *data)
     init_map_tiles(data, data->map.size, data->map.size);
     data->map.factors = (sfVector2f){15, 15};
     data->selected_texture = data->textures.sand;
+    sort_tiles(data);
     init_translation_point(data);
 }
 

@@ -18,6 +18,7 @@ SRC = src/main.c \
 	  src/textures/load_textures.c \
 	  src/game/events/rotate.c \
 	  src/utils/math/calc_dist.c \
+	  src/utils/math/sort_tiles.c \
 	  src/utils/check_pos_in_tile.c \
 	  src/interface/buttons.c \
 	  src/interface/tools/button_actions.c \

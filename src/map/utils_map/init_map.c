@@ -13,29 +13,20 @@ sfVector2f calculate_center_point(data_t *data);
 void init_map_tiles(data_t *data, int map_x, int map_y)
 {
     data->map.tiles = malloc(sizeof(tile_t *) * (map_y));
+    data->map.draw_order = malloc(sizeof(tile_t *) * (map_x * map_y));
+    int pos = 0;
     for (int i = 0 ; i < map_y ; ++i) {
         data->map.tiles[i] = malloc(sizeof(tile_t) * (map_x));
         for (int j = 0 ; j < map_x ; ++j) {
             data->map.tiles[i][j].coord_3d.x = i;
             data->map.tiles[i][j].coord_3d.y = j;
+            data->map.tiles[i][j].index_x = i;
+            data->map.tiles[i][j].index_y = j;
             data->map.tiles[i][j].coord_3d.z = 0;
             data->map.tiles[i][j].texture = data->textures.grass;
+            data->map.draw_order[pos++] = &data->map.tiles[i][j];
         }
     }
-}
-
-sfVector3f **init_map_3d(int map_x, int map_y)
-{
-    sfVector3f **output = malloc(sizeof(sfVector3f *) * (map_y));
-    for (int i = 0; i < map_y; ++i) {
-        output[i] = malloc(sizeof(sfVector3f) * (map_x));
-        for (int j = 0; j < map_x; ++j) {
-            output[i][j].x = i;
-            output[i][j].y = j;
-            output[i][j].z = 0;
-        }
-    }
-    return output;
 }
 
 void init_center_point(data_t *data)

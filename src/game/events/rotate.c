@@ -16,7 +16,7 @@ void rotate_right(data_t *data)
         .coord_3d.x + data->map.tiles[0][0].coord_3d.x) / 2;
     float cy = (data->map.tiles[data->map.size - 1][data->map.size - 1]
         .coord_3d.y + data->map.tiles[0][0].coord_3d.y) / 2;
-    float angle = DEG_TO_RAD(1);
+    float angle = DEG_TO_RAD(5);
     for (int i = 0; i < data->map.size; ++i) {
         for (int j = 0; j < data->map.size; ++j) {
             float x = data->map.tiles[i][j].coord_3d.x;
@@ -37,7 +37,7 @@ void rotate_left(data_t *data)
         .coord_3d.x + data->map.tiles[0][0].coord_3d.x) / 2;
     float cy = (data->map.tiles[data->map.size - 1][data->map.size - 1]
         .coord_3d.y + data->map.tiles[0][0].coord_3d.y) / 2;
-    float angle = -DEG_TO_RAD(1);
+    float angle = -DEG_TO_RAD(5);
     for (int i = 0; i < data->map.size; ++i) {
         for (int j = 0; j < data->map.size; ++j) {
             float x = data->map.tiles[i][j].coord_3d.x;

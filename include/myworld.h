@@ -34,16 +34,19 @@
 
     typedef struct {
         sfVector2f coord_2d;
+        sfVector2f coord_2d_flat;
         sfVector3f coord_3d;
         texture_data_t texture;
+        int index_x;
+        int index_y;
     } tile_t;
 
     typedef struct {
         tile_t **tiles;
-        tile_t *draw_order;
+        tile_t **draw_order;
         int size;
         sfVector2f factors;
-        sfVector2i hovered_tile;
+        tile_t *hovered_tile;
         bool is_tile_hovered;
     } map_t;
 
