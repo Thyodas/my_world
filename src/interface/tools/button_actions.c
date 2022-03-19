@@ -15,23 +15,20 @@ int button_bucket(data_t *data)
 {
     reset_selected_tool(data);
     set_selected_tool(data, BTN_BUCKET);
-    my_printf("%s", "Tool bucket\n");
     return 0;
 }
 
-int button_size(data_t *data)
+int button_panning(data_t *data)
 {
     reset_selected_tool(data);
-    set_selected_tool(data, BTN_GRID_SIZE);
-    my_printf("%s", "Tool size\n");
+    set_selected_tool(data, BTN_PANNING);
     return 0;
 }
 
-int button_pen_width(data_t *data)
+int button_precision(data_t *data)
 {
     reset_selected_tool(data);
-    set_selected_tool(data, BTN_PEN_WIDTH);
-    my_printf("%s", "Tool pen width\n");
+    set_selected_tool(data, BTN_PRECISION);
     return 0;
 }
 
@@ -39,7 +36,6 @@ int button_level(data_t *data)
 {
     reset_selected_tool(data);
     set_selected_tool(data, BTN_LEVEL);
-    my_printf("%s", "Tool level\n");
     return 0;
 }
 
@@ -47,6 +43,5 @@ int button_picker(data_t *data)
 {
     reset_selected_tool(data);
     set_selected_tool(data, BTN_PICKER);
-    my_printf("%s", "Tool picker\n");
     return 0;
 }

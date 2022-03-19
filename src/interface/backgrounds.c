@@ -25,4 +25,6 @@ void load_backgrounds(data_t *data)
 {
     data->ui.backgrounds[BACKGROUND_TOOLS] = create_background(0, 303,
         data->ui.textures.tools_bg.texture);
+    data->ui.ui_bg = create_background(0, 0,
+        data->ui.textures.ui_bg.texture);
 }

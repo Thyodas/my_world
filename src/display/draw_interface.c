@@ -28,17 +28,6 @@ static void draw_tooltips(data_t *data)
 static void draw_buttons(data_t *data)
 {
     for (int i = 0 ; i < NB_BUTTON; ++i) {
-        /*if (data->ui.buttons[i].state == SELECTED) {
-            sfSprite_setColor(data->ui.buttons[i].sprite, (sfColor){100, 100, 100, 255});
-            sfRenderStates state = {
-                sfBlendAlpha,
-                sfSprite_getTransform(data->ui.buttons[i].sprite),
-                data->ui.textures.selected.texture,
-                NULL
-            };
-            sfRenderWindow_drawSprite(data->window, data->ui.selected_sprite,
-                &state);
-        } else*/
         sfRenderWindow_drawSprite(data->window, data->ui.buttons[i].sprite,
             NULL);
     }

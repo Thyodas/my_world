@@ -31,7 +31,6 @@
     typedef struct {
         texture_data_t sand;
         texture_data_t checker;
-        texture_data_t hover;
     } textures_t;
 
     typedef struct {

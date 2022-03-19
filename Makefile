@@ -22,7 +22,6 @@ SRC = src/main.c \
 	  src/utils/check_pos_in_tile.c \
 	  src/map/utils_map/free_map.c \
 	  src/interface/buttons.c \
-	  src/interface/states.c \
 	  src/interface/tools/button_actions.c \
 	  src/interface/tools/utils.c \
 	  src/interface/backgrounds.c \

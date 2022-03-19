@@ -10,8 +10,8 @@
 
     enum buttons_pos {
         BTN_BUCKET,
-        BTN_GRID_SIZE,
-        BTN_PEN_WIDTH,
+        BTN_PANNING,
+        BTN_PRECISION,
         BTN_LEVEL,
         BTN_PICKER,/*
         BTN_SETTINGS,
@@ -55,18 +55,18 @@
 
     typedef struct {
         texture_data_t bucket;
-        texture_data_t size;
-        texture_data_t tools_bg;
-        texture_data_t pen_width;
+        texture_data_t panning;
+        texture_data_t precision;
         texture_data_t level;
         texture_data_t picker;
-        texture_data_t selected;
+        texture_data_t tools_bg;
+        texture_data_t ui_bg;
     } ui_textures;
 
     typedef struct {
         button_t buttons[NB_BUTTON];
         background_t backgrounds[NB_BACKGROUND];
-        sfSprite *selected_sprite;
+        background_t ui_bg;
         ui_textures textures;
         tooltip_t tooltip;
     } interface_t;

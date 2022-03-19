@@ -28,6 +28,7 @@ void main_loop(data_t *data)
         sfRenderWindow_clear(data->window, (sfColor){52, 192, 235, 30});
         check_interface_hovering(data);
         check_event(data);
+        sfRenderWindow_drawSprite(data->window, data->ui.ui_bg.sprite, NULL);
         draw_2d_map(data);
         draw_interface(data);
         sfRenderWindow_display(data->window);

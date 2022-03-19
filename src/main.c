@@ -29,7 +29,6 @@ void init_data(data_t *data)
     load_textures(data);
     load_buttons(data);
     load_backgrounds(data);
-    load_states(data);
     load_tooltips(data);
     set_selected_tool(data, BTN_BUCKET);
     init_map_tiles(data, MAP_X, MAP_Y);

@@ -16,16 +16,12 @@ int tool_bucket(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_size(data_t *data, sfEvent event)
+int tool_panning(data_t *data, sfEvent event)
 {
-    if (!sfMouse_isButtonPressed(sfMouseLeft))
-        return (0);
-    static bool mouse_set = false;
     static sfVector2i old_mouse_pos = {-1, -1};
-    if (event.type == sfEvtMouseButtonPressed
-        && event.mouseButton.button == sfMouseLeft) {
+    if (!sfMouse_isButtonPressed(sfMouseLeft)) {
         old_mouse_pos = data->pos_mouse;
-        mouse_set = true;
+        return (0);
     }
     data->translation_point.x += data->pos_mouse.x - old_mouse_pos.x;
     data->translation_point.y += data->pos_mouse.y - old_mouse_pos.y;
@@ -34,7 +30,7 @@ int tool_size(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_pen_width(data_t *data, sfEvent event)
+int tool_precision(data_t *data, sfEvent event)
 {
     if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.is_tile_hovered)
         return (0);
@@ -43,11 +39,17 @@ int tool_pen_width(data_t *data, sfEvent event)
 
 int tool_level(data_t *data, sfEvent event)
 {
-    if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.is_tile_hovered)
+    if (!data->map.is_tile_hovered)
         return (0);
-    data->map.tiles[data->map.hovered_tile.y]
-        [data->map.hovered_tile.x].coord_3d.z += 0.1;
-    data->recalc = 1;
+    if (sfMouse_isButtonPressed(sfMouseLeft)) {
+        data->map.tiles[data->map.hovered_tile.y][data->map.hovered_tile.x]
+            .coord_3d.z += 0.1;
+        data->recalc = 1;
+    } else if (sfMouse_isButtonPressed(sfMouseRight)) {
+        data->map.tiles[data->map.hovered_tile.y][data->map.hovered_tile.x]
+            .coord_3d.z -= 0.1;
+        data->recalc = 1;
+    }
     return 0;
 }
 
