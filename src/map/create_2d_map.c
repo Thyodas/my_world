@@ -32,8 +32,8 @@ sfVector2f project_3D_to_2D(sfVector3f coords_3D, sfVector2f factors)
 
 void translate_map_to_point(data_t *data)
 {
-    for (int i = 0; i < MAP_Y; ++i) {
-        for (int j = 0; j < MAP_X; ++j) {
+    for (int i = 0; i < data->map.size; ++i) {
+        for (int j = 0; j < data->map.size; ++j) {
             data->map.tiles[i][j].coord_2d.x += data->translation_point.x;
             data->map.tiles[i][j].coord_2d.y += data->translation_point.y;
         }
@@ -42,10 +42,10 @@ void translate_map_to_point(data_t *data)
 
 sfVector2f calculate_center_point(data_t *data)
 {
-    float c_x = (data->map.tiles[0][0].coord_3d.x
-                 + data->map.tiles[MAP_Y - 1][MAP_X - 1].coord_3d.x) / 2;
-    float c_y = (data->map.tiles[MAP_X - 1][0].coord_3d.y
-                 + data->map.tiles[0][MAP_Y - 1].coord_3d.y) / 2;
+    float c_x = (data->map.tiles[0][0].coord_3d.x + data->map.tiles
+        [data->map.size - 1][data->map.size - 1].coord_3d.x) / 2;
+    float c_y = (data->map.tiles[data->map.size - 1][0].coord_3d.y
+        + data->map.tiles[0][data->map.size - 1].coord_3d.y) / 2;
     return (project_iso_point(c_x, c_y, 0, data->map.factors));
 }
 
@@ -61,8 +61,8 @@ void init_translation_point(data_t *data)
 
 void calculate_2d_tiles(data_t *data)
 {
-    for (int i = 0; i < MAP_Y; ++i) {
-        for (int j = 0; j < MAP_X; ++j)
+    for (int i = 0; i < data->map.size; ++i) {
+        for (int j = 0; j < data->map.size; ++j)
             data->map.tiles[i][j].coord_2d = project_3D_to_2D(data->map
                 .tiles[i][j].coord_3d, data->map.factors);
     }

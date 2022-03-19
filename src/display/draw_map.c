@@ -47,7 +47,7 @@ void draw_vertex_array(data_t *data, int i)
 {
     sfVertexArray *vertex_array;
     sfVertexArray *hover;
-    for (int j = 0; j < MAP_X - 1; ++j) {
+    for (int j = 0; j < data->map.size - 1; ++j) {
         sfVector2f points[4] = {data->map.tiles[i][j].coord_2d,
                                 data->map.tiles[i][j + 1].coord_2d,
                                 data->map.tiles[i + 1][j + 1].coord_2d,
@@ -71,7 +71,7 @@ void draw_vertex_array(data_t *data, int i)
 int draw_2d_map(data_t *data)
 {
     data->map.is_tile_hovered = false;
-    for (int i = 0; i < MAP_Y - 1; i++)
+    for (int i = 0; i < data->map.size - 1; i++)
         draw_vertex_array(data, i);
     return 0;
 }

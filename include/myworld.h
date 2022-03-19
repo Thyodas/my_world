@@ -13,8 +13,6 @@
     #include <SFML/Window.h>
     #include <stdbool.h>
 
-    #define MAP_X 100
-    #define MAP_Y 100
     #define M_PI 3.14159265358979323846
     #define DEG_TO_RAD(x) ((x) * M_PI / 180)
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -42,8 +40,8 @@
 
     typedef struct {
         tile_t **tiles;
-        int size_x;
-        int size_y;
+        tile_t *draw_order;
+        int size;
         sfVector2f factors;
         sfVector2i hovered_tile;
         bool is_tile_hovered;

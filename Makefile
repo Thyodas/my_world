@@ -12,7 +12,6 @@ SRC = src/main.c \
 	  src/game/events/check_events.c \
 	  src/game/events/check_interface.c \
 	  src/game/events/tools/on_click_func.c \
-	  src/map/utils_map/print_map.c \
 	  src/map/create_2d_map.c \
 	  src/map/utils_map/init_map.c \
 	  src/window/init_window.c \
@@ -20,7 +19,6 @@ SRC = src/main.c \
 	  src/game/events/rotate.c \
 	  src/utils/math/calc_dist.c \
 	  src/utils/check_pos_in_tile.c \
-	  src/map/utils_map/free_map.c \
 	  src/interface/buttons.c \
 	  src/interface/tools/button_actions.c \
 	  src/interface/tools/utils.c \
