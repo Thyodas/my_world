@@ -19,7 +19,7 @@ void init_map_tiles(data_t *data, int map_x, int map_y)
             data->map.tiles[i][j].coord_3d.x = i;
             data->map.tiles[i][j].coord_3d.y = j;
             data->map.tiles[i][j].coord_3d.z = 0;
-            data->map.tiles[i][j].texture = data->textures.checker;
+            data->map.tiles[i][j].texture = data->textures.grass;
         }
     }
 }

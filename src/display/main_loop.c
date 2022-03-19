@@ -25,7 +25,6 @@ void main_loop(data_t *data)
             calculate_2d_tiles(data);
             data->recalc = false;
         }
-        sfRenderWindow_clear(data->window, (sfColor){52, 192, 235, 30});
         check_interface_hovering(data);
         check_event(data);
         sfRenderWindow_drawSprite(data->window, data->ui.ui_bg.sprite, NULL);

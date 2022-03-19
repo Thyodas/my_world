@@ -15,11 +15,16 @@ int size_y)
     texture->loaded = 1;
 }
 
-void load_textures(data_t *data)
+static load_tile_textures(data_t *data)
 {
     load_texture_data(&data->textures.checker,
         "img/tiles/check.jpg", 2048, 2048);
-    load_texture_data(&data->textures.sand, "img/tiles/sand.jpg", 800, 709);
+    load_texture_data(&data->textures.sand, "img/tiles/sand.png", 16, 16);
+    load_texture_data(&data->textures.grass, "img/tiles/grass.png", 16, 16);
+}
+
+static load_tool_textures(data_t *data)
+{
     load_texture_data(&data->ui.textures.bucket,
         "img/tools/bucket.png", 62, 62);
     load_texture_data(&data->ui.textures.panning,
@@ -29,8 +34,19 @@ void load_textures(data_t *data)
     load_texture_data(&data->ui.textures.level, "img/tools/level.png", 62, 62);
     load_texture_data(&data->ui.textures.picker,
         "img/tools/picker.png", 62, 62);
+}
+
+static load_background_textures(data_t *data)
+{
     load_texture_data(&data->ui.textures.tools_bg,
         "img/backgrounds/tools_bg.png", 135, 476);
     load_texture_data(&data->ui.textures.ui_bg, "img/backgrounds/ui_bg.png",
         1920, 1080);
+}
+
+void load_textures(data_t *data)
+{
+    load_tile_textures(data);
+    load_tool_textures(data);
+    load_background_textures(data);
 }
