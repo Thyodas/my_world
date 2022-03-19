@@ -25,7 +25,8 @@ SRC = src/main.c \
 	  src/interface/tools/button_actions.c \
 	  src/interface/tools/utils.c \
 	  src/interface/backgrounds.c \
-	  src/interface/tooltips.c
+	  src/interface/tooltips.c \
+	  src/utils/math/atof.c
 
 OBJ = $(SRC:.c=.o)
 
