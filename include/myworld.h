@@ -46,6 +46,7 @@
         texture_data_t texture;
         int index_x;
         int index_y;
+        sfColor color;
     } tile_t;
 
     typedef struct {

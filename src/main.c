@@ -27,7 +27,7 @@ void init_data(data_t *data)
     data->window = init_window(1920, 1080);
     data->map.is_tile_hovered = false;
     data->recalc = true;
-    data->map.size = 64;
+    data->map.size = 32;
     load_textures(data);
     load_buttons(data);
     load_backgrounds(data);
@@ -35,7 +35,7 @@ void init_data(data_t *data)
     set_selected_tool(data, BTN_BUCKET);
     init_map_tiles(data, data->map.size, data->map.size);
     data->map.factors = (sfVector2f){15, 15};
-    data->selected_texture = data->textures.sand;
+    data->selected_texture = data->textures.grass;
     sort_tiles(data);
     init_translation_point(data);
 }

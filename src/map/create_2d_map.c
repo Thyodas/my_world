@@ -62,9 +62,19 @@ void init_translation_point(data_t *data)
 void calculate_2d_tiles(data_t *data)
 {
     for (int i = 0; i < data->map.size; ++i) {
-        for (int j = 0; j < data->map.size; ++j)
+        for (int j = 0; j < data->map.size; ++j) {
             data->map.tiles[i][j].coord_2d = project_3D_to_2D(data->map
                 .tiles[i][j].coord_3d, data->map.factors);
+            if (i >= data->map.size - 1 || j >= data->map.size - 1)
+                continue;
+            float moy = (fabs(data->map.tiles[i][j].coord_3d.z)
+                + fabs(data->map.tiles[i + 1][j].coord_3d.z)
+                + fabs(data->map.tiles[i][j + 1].coord_3d.z)
+                + fabs(data->map.tiles[i + 1][j + 1].coord_3d.z)) / 4;
+            float modif = MIN(moy * 10, 100);
+            data->map.tiles[i][j].color = (sfColor){255 - modif, 255 - modif,
+                255 - modif, data->map.tiles[i][j].color.a};
+        }
     }
     translate_map_to_point(data);
 }

@@ -17,7 +17,7 @@ char *my_strfloat_int(double nbr, char *str, int round_int)
     unsigned int remainder = 0;
     char *str_ptr = str;
 
-    if (nbr == 0)
+    if (new_nbr == 0)
         return (my_addchar(str, '0'));
     while (new_nbr != 0) {
         remainder = (new_nbr + carry) % 10;

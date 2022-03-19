@@ -23,10 +23,10 @@ sfRenderStates create_state(sfTexture *text)
 }
 
 sfVertexArray *create_tile(sfVector2f points[4], texture_data_t texture,
-                            int hover)
+int hover, sfColor texture_color)
 {
     sfVertexArray *vertex_array = sfVertexArray_create();
-    sfColor color = hover ? (sfColor){120, 120, 120, 255} : sfWhite;
+    sfColor color = hover ? (sfColor){120, 120, 120, 255} : texture_color;
     sfVertex vertex1 = {.position = points[0], .color = color, .texCoords =
                         (sfVector2f){0, 0}};
     sfVertex vertex2 = {.position = points[1], .color = color, .texCoords =
@@ -81,12 +81,12 @@ void draw_vertex_array(data_t *data, int i, int j)
         .texture.texture);
     if (pnpoly(points, data->pos_mouse)) {
         vertex_array = create_tile(points,
-            data->map.tiles[i][j].texture, 1);
+            data->map.tiles[i][j].texture, 1, data->map.tiles[i][j].color);
         data->map.is_tile_hovered = true;
         data->map.hovered_tile = &data->map.tiles[i][j];
     } else
         vertex_array = create_tile(points,
-            data->map.tiles[i][j].texture, 0);
+            data->map.tiles[i][j].texture, 0, data->map.tiles[i][j].color);
     sfRenderWindow_drawVertexArray(data->window, vertex_array,
         &tile_state);
     sfVertexArray_destroy(vertex_array);
@@ -96,8 +96,8 @@ int draw_2d_map(data_t *data)
 {
     data->map.is_tile_hovered = false;
     for (int i = 0; i < data->map.size * data->map.size - 1; i++) {
-        if (data->map.draw_order[i]->index_x < data->map.size - 2 &&
-            data->map.draw_order[i]->index_y < data->map.size - 2) {
+        if (data->map.draw_order[i]->index_x < data->map.size - 1 &&
+            data->map.draw_order[i]->index_y < data->map.size - 1) {
             draw_vertex_array(data, data->map.draw_order[i]->index_x,
                 data->map.draw_order[i]->index_y);
         }

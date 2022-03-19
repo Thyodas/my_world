@@ -40,11 +40,20 @@ int tool_level(data_t *data, sfEvent event)
 {
     if (!data->map.is_tile_hovered)
         return (0);
+    int x = data->map.hovered_tile->index_x;
+    int y = data->map.hovered_tile->index_y;
+    sfColor color = data->map.tiles[x][y].color;
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
-        data->map.hovered_tile->coord_3d.z += 0.1;
+        data->map.tiles[x][y].coord_3d.z += 0.1;
+        data->map.tiles[x + 1][y].coord_3d.z += 0.1;
+        data->map.tiles[x + 1][y + 1].coord_3d.z += 0.1;
+        data->map.tiles[x][y + 1].coord_3d.z += 0.1;
         data->recalc = 1;
     } else if (sfMouse_isButtonPressed(sfMouseRight)) {
-        data->map.hovered_tile->coord_3d.z -= 0.1;
+        data->map.tiles[x][y].coord_3d.z -= 0.1;
+        data->map.tiles[x + 1][y].coord_3d.z -= 0.1;
+        data->map.tiles[x + 1][y + 1].coord_3d.z -= 0.1;
+        data->map.tiles[x][y + 1].coord_3d.z -= 0.1;
         data->recalc = 1;
     }
     return 0;
