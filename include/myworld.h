@@ -18,10 +18,17 @@
     #define MIN(a, b) ((a) < (b) ? (a) : (b))
     #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
+    enum textures {
+        SAND,
+        GRASS,
+        NB_TXT
+    };
+
     typedef struct {
         sfTexture *texture;
         sfVector2u size;
         int loaded;
+        int txt;
     } texture_data_t;
 
     #include "interface.h"

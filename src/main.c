@@ -19,6 +19,7 @@ void load_backgrounds(data_t *data);
 void load_states(data_t *data);
 void load_tooltips(data_t *data);
 void set_selected_tool(data_t *data, enum buttons_pos btn);
+void save_map(data_t *data, char *name);
 void sort_tiles(data_t *data);
 
 void init_data(data_t *data)
@@ -44,5 +45,6 @@ int main(int argc, char **argv)
     data_t data;
     init_data(&data);
     main_loop(&data);
+    save_map(&data, "autosave");
     return 0;
 }
