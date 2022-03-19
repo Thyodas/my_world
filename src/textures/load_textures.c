@@ -17,16 +17,20 @@ int size_y)
 
 void load_textures(data_t *data)
 {
-    load_texture_data(&data->textures.checker, "img/check.jpg", 2048, 2048);
-    load_texture_data(&data->textures.sand, "img/sand.jpg", 800, 709);
-    load_texture_data(&data->ui.textures.bucket, "img/bucket.png", 62, 62);
-    load_texture_data(&data->ui.textures.panning, "img/panning.png", 62, 62);
+    load_texture_data(&data->textures.checker,
+        "img/tiles/check.jpg", 2048, 2048);
+    load_texture_data(&data->textures.sand, "img/tiles/sand.jpg", 800, 709);
+    load_texture_data(&data->ui.textures.bucket,
+        "img/tools/bucket.png", 62, 62);
+    load_texture_data(&data->ui.textures.panning,
+        "img/tools/panning.png", 62, 62);
     load_texture_data(&data->ui.textures.precision,
-        "img/precision.png", 62, 62);
-    load_texture_data(&data->ui.textures.level, "img/level.png", 62, 62);
-    load_texture_data(&data->ui.textures.picker, "img/picker.png", 62, 62);
-    load_texture_data(&data->ui.textures.tools_bg, "img/tools_bg.png",
-        135, 476);
-    load_texture_data(&data->ui.textures.ui_bg, "img/ui_bg.png",
+        "img/tools/precision.png", 62, 62);
+    load_texture_data(&data->ui.textures.level, "img/tools/level.png", 62, 62);
+    load_texture_data(&data->ui.textures.picker,
+        "img/tools/picker.png", 62, 62);
+    load_texture_data(&data->ui.textures.tools_bg,
+        "img/backgrounds/tools_bg.png", 135, 476);
+    load_texture_data(&data->ui.textures.ui_bg, "img/backgrounds/ui_bg.png",
         1920, 1080);
 }
