@@ -32,6 +32,7 @@ SRC = src/main.c \
 	  src/utils/math/atof.c \
 	  src/game/save_map/save.c \
 	  src/game/save_map/load.c \
+	  src/game/save_map/utils.c \
 	  src/map/utils_map/free_map.c \
 	  src/map/resize_map.c
 

@@ -14,18 +14,7 @@
 #include "my.h"
 
 float ratof(char *arr);
-
-void implement_texture(data_t *data, int id, int i, int j)
-{
-    if (id == SAND)
-        data->map.tiles[i][j].texture = data->textures.sand;
-    if (id == GRASS)
-        data->map.tiles[i][j].texture = data->textures.grass;
-    if (id == DIRT)
-        data->map.tiles[i][j].texture = data->textures.dirt;
-    if (id == STONE)
-        data->map.tiles[i][j].texture = data->textures.stone;
-}
+void implement_texture(data_t *data, int id, int i, int j);
 
 int fill_tile(char *line, int i, int j, data_t *data)
 {
@@ -40,6 +29,8 @@ int fill_tile(char *line, int i, int j, data_t *data)
     data->map.tiles[i][j].coord_3d.x = coords[0];
     data->map.tiles[i][j].coord_3d.y = coords[1];
     data->map.tiles[i][j].coord_3d.z = coords[2];
+    if (coords[3] < 0 || coords[3] > 3)
+        return 0;
     implement_texture(data, (int)coords[3], i, j);
     data->map.tiles[i][j].index_x = i;
     data->map.tiles[i][j].index_y = j;
@@ -84,14 +75,14 @@ int fill_map(data_t *data, FILE *fp)
         if (i == data->map.size)
             break;
     }
-    return 1;
+    return pos == data->map.size * data->map.size;
 }
 
 int load_map(data_t *data, char *path)
 {
     FILE *fp = fopen(path, "r");
     if (!fp) {
-        my_printf("There was an error opening the file\n");
+        my_fprintf(2, "There was an error opening the file\n");
         return 0;
     }
     char *line = NULL;
@@ -99,10 +90,8 @@ int load_map(data_t *data, char *path)
     if (getline(&line, &len, fp) == -1)
         return 0;
     int size = my_getnbr(line);
-    if (size <= 1)
+    if (size <= 1 || size > 65)
         return 0;
     data->map.size = size;
-    if (!fill_map(data, fp))
-        return 0;
-    return 1;
+    return fill_map(data, fp);
 }
