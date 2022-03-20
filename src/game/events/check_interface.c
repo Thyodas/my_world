@@ -19,17 +19,19 @@ static const char *TOOLTIP_TEXT[] = {
     "B - Bucket\nLeft click on the tile you want to paint.",
     "M - Panning\nLeft click to move around the map.",
     "P - Precision\nGrab corner/tile with left click and use mouse to change \
-height.",
+    height.",
     "L - Level\nLeft click to increase tile height, right click to decrease \
-it.",
+    it.",
     "C - Picker\nLeft click on the tile you want to copy texture from."
 };
 
 static int check_buttons(data_t *data)
 {
     for (int i = 0; i < NB_BUTTON; ++i) {
-        sfFloatRect rect = sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
-        if (sfFloatRect_contains(&rect, data->pos_mouse.x, data->pos_mouse.y)) {
+        sfFloatRect rect =
+        sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
+        if (sfFloatRect_contains(&rect, data->pos_mouse.x,
+            data->pos_mouse.y)) {
             data->ui.buttons[i].on_click(data);
             return true;
         }
@@ -47,8 +49,9 @@ int check_interface_hovering(data_t *data)
 {
     reset_hovered_tool(data);
     for (int i = 0; i < NB_BUTTON; ++i) {
-        sfFloatRect rect = sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
-        if (!sfFloatRect_contains(&rect, data->pos_mouse.x, data->pos_mouse.y))
+        sfFloatRect rct =
+        sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
+        if (!sfFloatRect_contains(&rct, data->pos_mouse.x, data->pos_mouse.y))
             continue;
         if (i < BTN_GRASS) {
             set_tooltip_text(data, TOOLTIP_TEXT[i]);

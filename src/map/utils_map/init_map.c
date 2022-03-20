@@ -14,10 +14,8 @@ void init_hover_circle(data_t *data)
 {
     data->map.hover_circle = sfCircleShape_create();
     data->map.show_hover_circle = true;
-    /*sfCircleShape_setTexture(data->map.hover_circle,
-        sfTexture_createFromImage(sfImage_createFromColor(10, 10,
-        (sfColor){255, 255, 255, 100}), NULL), false);*/
-    sfCircleShape_setFillColor(data->map.hover_circle, (sfColor){0, 0, 0, 150});
+    sfCircleShape_setFillColor(data->map.hover_circle,
+                                (sfColor){0, 0, 0, 150});
     sfCircleShape_setRadius(data->map.hover_circle, 60);
     sfCircleShape_setOrigin(data->map.hover_circle, (sfVector2f){60, 60});
     sfCircleShape_setOutlineColor(data->map.hover_circle,

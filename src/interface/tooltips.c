@@ -20,9 +20,11 @@ void set_tooltip_text(data_t *data, char *text)
     sfFloatRect text_rect = sfText_getGlobalBounds(data->ui.tooltip.text);
     sfFloatRect bg_rect = sfSprite_getGlobalBounds(
         data->ui.tooltip.background.sprite);
-    sfVector2f bg_scale = sfSprite_getScale(data->ui.tooltip.background.sprite);
-    sfVector2f new_scale = {(text_rect.width + 25) * bg_scale.x / bg_rect.width,
-        (text_rect.height + 40) * bg_scale.y / bg_rect.height};
+    sfVector2f bg_scale =
+    sfSprite_getScale(data->ui.tooltip.background.sprite);
+    sfVector2f new_scale =
+    {(text_rect.width + 25) * bg_scale.x / bg_rect.width,
+    (text_rect.height + 40) * bg_scale.y / bg_rect.height};
     sfSprite_setScale(data->ui.tooltip.background.sprite, new_scale);
 }
 

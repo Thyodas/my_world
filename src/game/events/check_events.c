@@ -37,8 +37,9 @@ void rotate(data_t *data, sfEvent event)
 void zoom(data_t *data, sfEvent event)
 {
     if (event.type == sfEvtMouseWheelScrolled) {
-        float result_x = data->map.factors.x + event.mouseWheelScroll.delta * 5;
-        float result_y = data->map.factors.y + event.mouseWheelScroll.delta * 5;
+        float delta = event.mouseWheelScroll.delta;
+        float result_x = data->map.factors.x + delta * 5;
+        float result_y = data->map.factors.y + delta * 5;
         if (result_x > 0 && result_y > 0) {
             sfVector2f rel_pos_mouse = {data->pos_mouse.x
                 - data->translation_point.x,

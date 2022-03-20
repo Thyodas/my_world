@@ -51,7 +51,8 @@ void draw_vertex_array(data_t *data, int i, int j)
     sfVector2f points[4] = {data->map.tiles[i][j].coord_2d, data->map.tiles[i]
         [j + 1].coord_2d, data->map.tiles[i + 1][j + 1].coord_2d,
         data->map.tiles[i + 1][j].coord_2d};
-    sfRenderStates state = create_state(data->map.tiles[i][j].texture.texture);
+    sfRenderStates state =
+    create_state(data->map.tiles[i][j].texture.texture);
     if (data->map.is_tile_hovered && i == data->map.hovered_tile->
         index_x && j == data->map.hovered_tile->index_y) {
         draw_hover_tile(data, points, state, (sfVector2i){i, j});

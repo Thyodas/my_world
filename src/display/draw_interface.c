@@ -11,8 +11,8 @@
 static void draw_backgrounds(data_t *data)
 {
     for (int i = 0 ; i < NB_BACKGROUND; ++i) {
-        sfRenderWindow_drawSprite(data->window, data->ui.backgrounds[i].sprite,
-            NULL);
+        sfRenderWindow_drawSprite(data->window,
+        data->ui.backgrounds[i].sprite, NULL);
     }
 }
 
