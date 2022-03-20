@@ -15,7 +15,8 @@
 
 void save_map(data_t *data, char *name)
 {
-    int fd = open(name, O_WRONLY | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
+    int fd = open(name, O_WRONLY | O_CREAT | O_TRUNC,
+        S_IRWXU | S_IRWXG | S_IRWXO);
     my_fprintf(fd, "%d\n", data->map.size);
     for (int i = 0; i < data->map.size; ++i) {
         for (int j = 0; j < data->map.size; ++j) {

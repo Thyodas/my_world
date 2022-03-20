@@ -1,0 +1,5 @@
+grid_size
+x1 y1 z1 texture_id1
+x2 y2 z2 texture_id2
+...
+xN yN zN texture_idN
