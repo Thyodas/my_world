@@ -81,6 +81,16 @@ int fill_map(data_t *data, FILE *fp)
     return pos == data->map.size * data->map.size;
 }
 
+int check_first_line(char *str)
+{
+    int len = my_strlen(str);
+    for (int i = 0; i < len - 1; ++i) {
+        if (str[i] < '0' || str[i] > '9')
+            return 0;
+    }
+    return 1;
+}
+
 int load_map(data_t *data, char *path)
 {
     FILE *fp = fopen(path, "r");
@@ -91,6 +101,8 @@ int load_map(data_t *data, char *path)
     char *line = NULL;
     size_t len = 0;
     if (getline(&line, &len, fp) == -1)
+        return 0;
+    if (!check_first_line(line))
         return 0;
     int size = my_getnbr(line);
     if (size <= 1 || size > 65)
