@@ -13,6 +13,12 @@ void rotate_left(data_t *data);
 bool check_interface(data_t *data);
 sfVector2f calculate_center_point(data_t *data);
 void sort_tiles(data_t *data);
+void set_selected_tool(data_t *data, enum buttons_pos btn);
+int button_bucket(data_t *data);
+int button_panning(data_t *data);
+int button_precision(data_t *data);
+int button_level(data_t *data);
+int button_picker(data_t *data);
 
 void rotate(data_t *data, sfEvent event)
 {
@@ -58,9 +64,24 @@ void tool_event(data_t *data, sfEvent event)
     data->selected_tool_func(data, event);
 }
 
-void mouse_event(data_t *data, sfEvent event)
+int tool_shortcut(data_t *data, sfEvent event)
 {
-    return;
+    if (event.type == sfEvtKeyPressed) {
+        switch (event.key.code) {
+            case sfKeyB:
+                return (button_bucket(data));
+            case sfKeyM:
+                return (button_panning(data));
+            case sfKeyP:
+                return (button_precision(data));
+            case sfKeyL:
+                return (button_level(data));
+            case sfKeyC:
+                return (button_picker(data));
+            default:
+                break;
+        }
+    }
 }
 
 void check_event(data_t *data)
@@ -71,7 +92,7 @@ void check_event(data_t *data)
             sfRenderWindow_close(data->window);
         rotate(data, event);
         zoom(data, event);
-        mouse_event(data, event);
+        tool_shortcut(data, event);
         tool_event(data, event);
     }
 }

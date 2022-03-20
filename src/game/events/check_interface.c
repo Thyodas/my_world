@@ -16,12 +16,13 @@ void set_tooltip_text(data_t *data, char *text);
 void set_tooltip_pos(data_t *data, float x, float y);
 
 static const char *TOOLTIP_TEXT[] = {
-    "Bucket\nLeft click on the tile you want to paint.",
-    "Panning\nLeft click to move around the map.",
-    "Precision\nGrab corner/tile with left click and use mouse to change \
+    "B - Bucket\nLeft click on the tile you want to paint.",
+    "M - Panning\nLeft click to move around the map.",
+    "P - Precision\nGrab corner/tile with left click and use mouse to change \
 height.",
-    "Level\nLeft click to increase tile height, right click to decrease it.",
-    "Picker\nLeft click on the tile you want to copy texture from."
+    "L - Level\nLeft click to increase tile height, right click to decrease \
+it.",
+    "C - Picker\nLeft click on the tile you want to copy texture from."
 };
 
 static int check_buttons(data_t *data)
