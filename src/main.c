@@ -27,7 +27,6 @@ int load_map(data_t *data, char *path);
 
 int init_data(data_t *data, int argc, char **argv)
 {
-    data->window = init_window(1920, 1080);
     data->map.is_tile_hovered = false;
     data->map.use_hover_circle = false;
     data->map.hovered_tile = NULL;
@@ -41,6 +40,7 @@ int init_data(data_t *data, int argc, char **argv)
         init_map_tiles(data, data->map.size, data->map.size);
     else if (load_map(data, argv[1]) == 0)
         return 0;
+    data->window = init_window(1920, 1080);
     init_hover_circle(data);
     data->map.factors = (sfVector2f){15, 15};
     data->selected_texture = data->textures.grass;
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     data.map.size = 32;
     if (argc != 1 && argc != 2) {
         my_printf("Wrong number of arguments\n");
-        return 84;;
+        return 84;
     }
     if (!init_data(&data, argc, argv))
         return 84;
