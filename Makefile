@@ -15,6 +15,7 @@ SRC = src/main.c \
 	  src/game/events/tools/on_click_func.c \
 	  src/game/events/tools/utils.c \
 	  src/map/create_2d_map.c \
+	  src/map/translate_map.c \
 	  src/map/utils_map/init_map.c \
 	  src/window/init_window.c \
 	  src/textures/load_textures.c \

@@ -10,7 +10,8 @@
 sfRenderWindow *init_window(int x, int y)
 {
     sfVideoMode mode = {.width = x, .height = y, .bitsPerPixel = 0};
-    sfRenderWindow *win = sfRenderWindow_create(mode, "my_world", sfClose, NULL);
+    sfRenderWindow *win = sfRenderWindow_create(mode, "my_world",
+        sfClose, NULL);
     sfRenderWindow_setFramerateLimit(win, 60);
     return win;
 }

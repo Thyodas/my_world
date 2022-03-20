@@ -7,12 +7,12 @@
 
 #include "myworld.h"
 
-void translate_map(data_t *data, sfVector2f vector)
+void translate_map_to_point(data_t *data)
 {
     for (int i = 0; i < data->map.size; ++i) {
         for (int j = 0; j < data->map.size; ++j) {
-            data->map.tiles[i][j].coord_3d.x += vector.x;
-            data->map.tiles[i][j].coord_3d.y += vector.y;
+            data->map.tiles[i][j].coord_2d.x += data->translation_point.x;
+            data->map.tiles[i][j].coord_2d.y += data->translation_point.y;
         }
     }
 }

@@ -13,7 +13,7 @@ int tool_precision(data_t *data, sfEvent event);
 int tool_level(data_t *data, sfEvent event);
 int tool_picker(data_t *data, sfEvent event);
 
-int (*const tool_function[])(data_t *data, sfEvent event) = {
+int (*const TOOL_FUNCTION[])(data_t *data, sfEvent event) = {
     tool_bucket,
     tool_panning,
     tool_precision,
@@ -33,7 +33,7 @@ void set_selected_tool(data_t *data, enum buttons_pos btn)
     sfSprite_setColor(data->interface.buttons[btn].sprite,
         (sfColor){150, 150, 150, 255});
     data->interface.buttons[btn].state = SELECTED;
-    data->selected_tool_func = tool_function[btn];
+    data->selected_tool_func = TOOL_FUNCTION[btn];
 }
 
 void set_hovered_tool(data_t *data, enum buttons_pos btn)

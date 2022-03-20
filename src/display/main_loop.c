@@ -27,7 +27,8 @@ void main_loop(data_t *data)
         }
         check_interface_hovering(data);
         check_event(data);
-        sfRenderWindow_drawSprite(data->window, data->interface.ui_bg.sprite, NULL);
+        sfRenderWindow_drawSprite(data->window,
+            data->interface.ui_bg.sprite, NULL);
         draw_2d_map(data);
         draw_interface(data);
         sfRenderWindow_display(data->window);

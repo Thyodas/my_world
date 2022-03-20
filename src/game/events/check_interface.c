@@ -19,9 +19,9 @@ static const char *TOOLTIP_TEXT[] = {
     "B - Bucket\nLeft click on the tile you want to paint.",
     "M - Panning\nLeft click to move around the map.",
     "P - Precision\nGrab corner/tile with left click and use mouse to change \
-    height.",
+height.",
     "L - Level\nLeft click to increase tile height, right click to decrease \
-    it.",
+it.",
     "C - Picker\nLeft click on the tile you want to copy texture from."
 };
 
