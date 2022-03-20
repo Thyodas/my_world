@@ -18,3 +18,21 @@ void implement_texture(data_t *data, int id, int i, int j)
     if (id == STONE)
         data->map.tiles[i][j].texture = data->textures.stone;
 }
+
+static int check_if_char_valid(char c)
+{
+    if (c == '.' || c == '-' || c == '\n' || c == ' ')
+        return 1;
+    if (c >= '0' && c <= '9')
+        return 1;
+    return 0;
+}
+
+int check_line(char *line)
+{
+    for (int i = 0; line[i] != '\0'; ++i) {
+        if (!check_if_char_valid(line[i]))
+            return 0;
+    }
+    return 1;
+}

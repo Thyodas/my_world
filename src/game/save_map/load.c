@@ -15,9 +15,12 @@
 
 float ratof(char *arr);
 void implement_texture(data_t *data, int id, int i, int j);
+int check_line(char *line);
 
 int fill_tile(char *line, int i, int j, data_t *data)
 {
+    if (!check_line(line))
+        return 0;
     float coords[4];
     int k = 0;
     char *token = my_strtok(line, " ");
