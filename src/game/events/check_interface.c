@@ -56,7 +56,8 @@ int check_interface_hovering(data_t *data)
             continue;
         if (i < BTN_GRASS) {
             set_tooltip_text(data, TOOLTIP_TEXT[i]);
-            sfVector2f pos = sfSprite_getPosition(data->interface.buttons[i].sprite);
+            sfVector2f pos = sfSprite_getPosition(data->
+                                                interface.buttons[i].sprite);
             set_tooltip_pos(data, pos.x + 82, pos.y);
             data->interface.tooltip.is_visible = true;
         }

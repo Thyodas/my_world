@@ -17,18 +17,14 @@
         BTN_GRASS,
         BTN_DIRT,
         BTN_SAND,
-        BTN_STONE,/*
-        BTN_SETTINGS,
-        BTN_OPEN_FILE,
-        BTN_SAVE_FILE,*/
+        BTN_STONE,
         NB_BUTTON
     };
 
     #define NB_TOOL BTN_PICKER
 
     enum background_pos {
-        BACKGROUND_TOOLS,/*
-        BACKGROUND_SETTINGS,*/
+        BACKGROUND_TOOLS,
         NB_BACKGROUND
     };
 
