@@ -13,7 +13,11 @@
         BTN_PANNING,
         BTN_PRECISION,
         BTN_LEVEL,
-        BTN_PICKER,/*
+        BTN_PICKER,
+        BTN_GRASS,
+        BTN_DIRT,
+        BTN_SAND,
+        BTN_STONE,/*
         BTN_SETTINGS,
         BTN_OPEN_FILE,
         BTN_SAVE_FILE,*/
@@ -61,6 +65,10 @@
         texture_data_t picker;
         texture_data_t tools_bg;
         texture_data_t ui_bg;
+        texture_data_t grass_btn;
+        texture_data_t dirt_btn;
+        texture_data_t sand_btn;
+        texture_data_t stone_btn;
     } ui_textures;
 
     typedef struct {

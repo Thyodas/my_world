@@ -45,7 +45,7 @@ void set_hovered_tool(data_t *data, enum buttons_pos btn)
 
 void reset_hovered_tool(data_t *data)
 {
-    for (int i = 0; i <= BTN_PICKER; ++i) {
+    for (int i = 0; i < NB_BUTTON; ++i) {
         if (data->ui.buttons[i].state == HOVERED)
             set_idle_tool(data, i);
     }

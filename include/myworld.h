@@ -19,8 +19,10 @@
     #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
     enum textures {
-        SAND,
         GRASS,
+        DIRT,
+        SAND,
+        STONE,
         NB_TXT
     };
 
@@ -34,9 +36,11 @@
     #include "interface.h"
 
     typedef struct {
-        texture_data_t sand;
         texture_data_t checker;
         texture_data_t grass;
+        texture_data_t dirt;
+        texture_data_t sand;
+        texture_data_t stone;
     } textures_t;
 
     typedef struct {
