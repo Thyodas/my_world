@@ -50,12 +50,16 @@ static void load_tool_textures(data_t *data)
         (sfVector2u){62, 62}, -1);
     load_texture_data(&data->interface.textures.picker,
         "img/tools/picker.png", (sfVector2u){62, 62}, -1);
+    load_texture_data(&data->interface.textures.minus_btn,
+        "img/tools/minus_btn.png", (sfVector2u){62, 62}, -1);
+    load_texture_data(&data->interface.textures.plus_btn,
+        "img/tools/plus_btn.png", (sfVector2u){62, 62}, -1);
 }
 
 static void load_background_textures(data_t *data)
 {
     load_texture_data(&data->interface.textures.tools_bg,
-        "img/backgrounds/tools_bg.png", (sfVector2u){135, 476}, -1);
+        "img/backgrounds/interface_background.png", (sfVector2u){135, 476}, -1);
     load_texture_data(&data->interface.textures.ui_bg,
         "img/backgrounds/ui_bg3_auto_x1.jpg", (sfVector2u){1920, 1080}, -1);
 }

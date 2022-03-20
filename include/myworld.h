@@ -57,6 +57,8 @@
         tile_t **tiles;
         tile_t **draw_order;
         int size;
+        int new_map_size;
+        int size_step;
         sfVector2f factors;
         tile_t *hovered_tile;
         sfCircleShape *hover_circle;

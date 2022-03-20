@@ -11,9 +11,11 @@
 void free_map(data_t *data);
 void init_map_tiles(data_t *data, int map_x, int map_y);
 
-void resize_map(data_t *data, int new_size)
+void resize_map(data_t *data)
 {
     free_map(data);
-    data->map.size = new_size;
-    init_map_tiles(data, new_size, new_size);
+    data->map.size = data->map.new_map_size;
+    init_map_tiles(data, data->map.size, data->map.size);
+    data->recalc = true;
+    data->map.new_map_size = -1;
 }

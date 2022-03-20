@@ -27,6 +27,8 @@ SRC = src/main.c \
 	  src/interface/tools/button_actions.c \
 	  src/interface/tools/utils.c \
 	  src/interface/tools/buttons_texture.c \
+	  src/interface/tools/buttons_map_size.c \
+	  src/interface/text.c \
 	  src/interface/backgrounds.c \
 	  src/interface/tooltips.c \
 	  src/utils/math/atof.c \

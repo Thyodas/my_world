@@ -39,4 +39,5 @@ void draw_interface(data_t *data)
     draw_backgrounds(data);
     draw_buttons(data);
     draw_tooltips(data);
+    sfRenderWindow_drawText(data->window, data->interface.map_size_text, NULL);
 }

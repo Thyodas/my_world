@@ -18,6 +18,8 @@
         BTN_DIRT,
         BTN_SAND,
         BTN_STONE,
+        BTN_PLUS,
+        BTN_MINUS,
         NB_BUTTON
     };
 
@@ -65,6 +67,8 @@
         texture_data_t dirt_btn;
         texture_data_t sand_btn;
         texture_data_t stone_btn;
+        texture_data_t plus_btn;
+        texture_data_t minus_btn;
     } ui_textures;
 
     typedef struct {
@@ -73,6 +77,7 @@
         background_t ui_bg;
         ui_textures textures;
         tooltip_t tooltip;
+        sfText *map_size_text;
     } interface_t;
 
 #endif /* INTERFACE_H_ */

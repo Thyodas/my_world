@@ -16,11 +16,14 @@ void print_map(sfVector2f **map);
 float calc_dist(sfVector2f point1, sfVector2f point2);
 void draw_interface(data_t *data);
 int check_interface_hovering(data_t *data);
+void resize_map(data_t *data);
 
 void main_loop(data_t *data)
 {
     while (sfRenderWindow_isOpen(data->window)) {
         data->pos_mouse = sfMouse_getPositionRenderWindow(data->window);
+        if (data->map.new_map_size > 0)
+            resize_map(data);
         if (data->recalc) {
             calculate_2d_tiles(data);
             data->recalc = false;
