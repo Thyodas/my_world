@@ -59,8 +59,43 @@ int init_data(data_t *data, int argc, char **argv)
     return 1;
 }
 
+void display_usage_second(void)
+{
+    my_printf("Allows the user to level the map, either up");
+    my_printf("(with left click) or down (with right click)\n");
+    my_printf("\tPICKER (key : C)\t\t");
+    my_printf("Allows the user to pick the default texture");
+    my_printf("directly on the map\n\n");
+}
+
+void display_usage(void)
+{
+    my_printf("USAGE\n\t./my_world [save_file]\n\n");
+    my_printf("DESCRPTION\n\tsave_file\t\tOptional, path to a file");
+    my_printf("representing a saved map\n\nUSER INPUT\n\t");
+    my_printf("Right/Left click\tAllows the user to modify the map");
+    my_printf(" based on the tool selected\n\tMouse wheel\t");
+    my_printf("\tAllows the user to zoom in/out of the map\n\t");
+    my_printf("Left/Right arrow\tAllows the user to rotate horizontally");
+    my_printf(" the map\n\nTOOLS\n\t");
+    my_printf("BUCKET (key : B)\t\tAllows the user to change ");
+    my_printf("the texture of the tile\n\t\t\t\t\t(the user can choose");
+    my_printf(" the default texture via a box in the bottom left corner)");
+    my_printf("\n\tPANNING (key : M)\t\t");
+    my_printf("Allows the user to move with the mouse");
+    my_printf("\n\tPRECISION (key : P)\t\t");
+    my_printf("Allows the user to level the terrain more");
+    my_printf("precisely (by either picking a corner of a tile or a tile)\n");
+    my_printf("\tLEVEL (key : L)\t\t\t");
+    display_usage_second();
+}
+
 int main(int argc, char **argv)
 {
+    if (argc == 2 && my_strcmp(argv[1], "-h") == 0) {
+        display_usage();
+        return 0;
+    }
     data_t data;
     data.map.size = 32;
     if (argc != 1 && argc != 2) {
