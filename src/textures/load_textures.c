@@ -59,7 +59,8 @@ static void load_tool_textures(data_t *data)
 static void load_background_textures(data_t *data)
 {
     load_texture_data(&data->interface.textures.tools_bg,
-        "img/backgrounds/interface_background.png", (sfVector2u){135, 476}, -1);
+        "img/backgrounds/interface_background.png",
+        (sfVector2u){135, 476}, -1);
     load_texture_data(&data->interface.textures.ui_bg,
         "img/backgrounds/ui_bg3_auto_x1.jpg", (sfVector2u){1920, 1080}, -1);
 }
