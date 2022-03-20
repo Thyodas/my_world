@@ -10,6 +10,21 @@
 
 sfVector2f calculate_center_point(data_t *data);
 
+void init_hover_circle(data_t *data)
+{
+    data->map.hover_circle = sfCircleShape_create();
+    data->map.show_hover_circle = true;
+    /*sfCircleShape_setTexture(data->map.hover_circle,
+        sfTexture_createFromImage(sfImage_createFromColor(10, 10,
+        (sfColor){255, 255, 255, 100}), NULL), false);*/
+    sfCircleShape_setFillColor(data->map.hover_circle, (sfColor){0, 0, 0, 150});
+    sfCircleShape_setRadius(data->map.hover_circle, 60);
+    sfCircleShape_setOrigin(data->map.hover_circle, (sfVector2f){60, 60});
+    sfCircleShape_setOutlineColor(data->map.hover_circle,
+        (sfColor){0, 0, 0, 175});
+    sfCircleShape_setOutlineThickness(data->map.hover_circle, 5);
+}
+
 void init_map_tiles(data_t *data, int map_x, int map_y)
 {
     data->map.tiles = malloc(sizeof(tile_t *) * (map_y));
@@ -23,7 +38,8 @@ void init_map_tiles(data_t *data, int map_x, int map_y)
             data->map.tiles[i][j].index_x = i;
             data->map.tiles[i][j].index_y = j;
             data->map.tiles[i][j].coord_3d.z = 0;
-            data->map.tiles[i][j].texture = data->textures.grass;
+            data->map.tiles[i][j].texture = data->textures.sand;
+            data->map.tiles[i][j].color = sfWhite;
             data->map.draw_order[pos++] = &data->map.tiles[i][j];
         }
     }

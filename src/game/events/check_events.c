@@ -61,15 +61,6 @@ void tool_event(data_t *data, sfEvent event)
 void mouse_event(data_t *data, sfEvent event)
 {
     return;
-    /*if (event.type == sfEvtMouseButtonReleased
-        && event.mouseButton.button == sfMouseLeft
-        || !sfFloatRect_contains(&(sfFloatRect){0, 0, 1920, 1080},
-        data->pos_mouse.x, data->pos_mouse.y)) {
-        data->mouse_released = true;
-    }
-    if (sfMouse_isButtonPressed(sfMouseLeft) || !data->mouse_released) {
-        data->mouse_released = false;
-    }*/
 }
 
 void check_event(data_t *data)

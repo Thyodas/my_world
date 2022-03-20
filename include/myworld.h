@@ -55,6 +55,10 @@
         int size;
         sfVector2f factors;
         tile_t *hovered_tile;
+        sfCircleShape *hover_circle;
+        double hover_circle_radius;
+        bool show_hover_circle;
+        bool use_hover_circle;
         bool is_tile_hovered;
     } map_t;
 

@@ -8,10 +8,12 @@
 SRC = src/main.c \
 	  src/display/draw_map.c \
 	  src/display/draw_interface.c \
+	  src/display/draw_map_utils.c \
 	  src/display/main_loop.c \
 	  src/game/events/check_events.c \
 	  src/game/events/check_interface.c \
 	  src/game/events/tools/on_click_func.c \
+	  src/game/events/tools/utils.c \
 	  src/map/create_2d_map.c \
 	  src/map/utils_map/init_map.c \
 	  src/window/init_window.c \

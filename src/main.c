@@ -21,11 +21,14 @@ void load_tooltips(data_t *data);
 void set_selected_tool(data_t *data, enum buttons_pos btn);
 void save_map(data_t *data, char *name);
 void sort_tiles(data_t *data);
+void init_hover_circle(data_t *data);
 
 void init_data(data_t *data)
 {
     data->window = init_window(1920, 1080);
     data->map.is_tile_hovered = false;
+    data->map.use_hover_circle = false;
+    data->map.hovered_tile = NULL;
     data->recalc = true;
     data->map.size = 32;
     load_textures(data);
@@ -34,6 +37,7 @@ void init_data(data_t *data)
     load_tooltips(data);
     set_selected_tool(data, BTN_BUCKET);
     init_map_tiles(data, data->map.size, data->map.size);
+    init_hover_circle(data);
     data->map.factors = (sfVector2f){15, 15};
     data->selected_texture = data->textures.grass;
     sort_tiles(data);

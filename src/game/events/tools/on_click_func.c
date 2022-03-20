@@ -5,7 +5,10 @@
 ** tool functions executed on click
 */
 
-#include "myworld.h"
+#include "tool_precision.h"
+
+void tool_precision_modify(data_t *data, tool_precision_t tool);
+void set_precision_struct(data_t *data, tool_precision_t *tool);
 
 int tool_bucket(data_t *data, sfEvent event)
 {
@@ -29,10 +32,26 @@ int tool_panning(data_t *data, sfEvent event)
     return 0;
 }
 
+float calc_newz(data_t *data, int i, int j, int new_y)
+{
+    int x = data->map.tiles[i][j].coord_3d.x;
+    int y = data->map.tiles[i][j].coord_3d.y;
+    float angle_x = DEG_TO_RAD(35);
+    float angle_y = DEG_TO_RAD(25);
+    return (sin(angle_y) * y + sin(angle_y) * x
+        - data->pos_mouse.y / data->map.factors.y);
+}
+
 int tool_precision(data_t *data, sfEvent event)
 {
-    if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.is_tile_hovered)
+    static tool_precision_t tool;
+    if (data->map.hovered_tile == NULL)
+        return;
+    if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.hovered_tile) {
+        set_precision_struct(data, &tool);
         return (0);
+    }
+    tool_precision_modify(data, tool);
     return 0;
 }
 
