@@ -28,7 +28,8 @@ SRC = src/main.c \
 	  src/interface/backgrounds.c \
 	  src/interface/tooltips.c \
 	  src/utils/math/atof.c \
-	  src/game/save_map/save.c
+	  src/game/save_map/save.c \
+	  src/game/save_map/load.c
 
 OBJ = $(SRC:.c=.o)
 
