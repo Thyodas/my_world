@@ -50,10 +50,12 @@ int check_interface_hovering(data_t *data)
         sfFloatRect rect = sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
         if (!sfFloatRect_contains(&rect, data->pos_mouse.x, data->pos_mouse.y))
             continue;
-        set_tooltip_text(data, TOOLTIP_TEXT[i]);
-        sfVector2f pos = sfSprite_getPosition(data->ui.buttons[i].sprite);
-        set_tooltip_pos(data, pos.x + 82, pos.y);
-        data->ui.tooltip.is_visible = true;
+        if (i < BTN_GRASS) {
+            set_tooltip_text(data, TOOLTIP_TEXT[i]);
+            sfVector2f pos = sfSprite_getPosition(data->ui.buttons[i].sprite);
+            set_tooltip_pos(data, pos.x + 82, pos.y);
+            data->ui.tooltip.is_visible = true;
+        }
         if (data->ui.buttons[i].state == IDLE) {
             set_hovered_tool(data, i);
             return true;

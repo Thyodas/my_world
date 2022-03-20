@@ -21,9 +21,21 @@ static load_tile_textures(data_t *data)
     load_texture_data(&data->textures.checker,
         "img/tiles/check.jpg", (sfVector2u){2048, 2048}, -1);
     load_texture_data(&data->textures.sand, "img/tiles/sand.png",
-                    (sfVector2u){16, 16}, SAND);
+        (sfVector2u){16, 16}, SAND);
     load_texture_data(&data->textures.grass, "img/tiles/grass.png",
-                    (sfVector2u){16, 16}, GRASS);
+        (sfVector2u){16, 16}, GRASS);
+    load_texture_data(&data->textures.dirt, "img/tiles/dirt.png",
+        (sfVector2u){16, 16}, DIRT);
+    load_texture_data(&data->textures.stone, "img/tiles/stone.png",
+        (sfVector2u){16, 16}, STONE);
+    load_texture_data(&data->ui.textures.grass_btn,
+        "img/tiles/grass_btn.png", (sfVector2u){68, 68}, -1);
+    load_texture_data(&data->ui.textures.dirt_btn,
+        "img/tiles/dirt_btn.png", (sfVector2u){68, 68}, -1);
+    load_texture_data(&data->ui.textures.sand_btn,
+        "img/tiles/sand_btn.png", (sfVector2u){68, 68}, -1);
+    load_texture_data(&data->ui.textures.stone_btn,
+        "img/tiles/stone_btn.png", (sfVector2u){68, 68}, -1);
 }
 
 static load_tool_textures(data_t *data)
@@ -35,7 +47,7 @@ static load_tool_textures(data_t *data)
     load_texture_data(&data->ui.textures.precision,
         "img/tools/precision.png", (sfVector2u){62, 62}, -1);
     load_texture_data(&data->ui.textures.level, "img/tools/level.png",
-                    (sfVector2u){62, 62}, -1);
+        (sfVector2u){62, 62}, -1);
     load_texture_data(&data->ui.textures.picker,
         "img/tools/picker.png", (sfVector2u){62, 62}, -1);
 }
