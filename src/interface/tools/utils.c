@@ -23,33 +23,33 @@ int (*const tool_function[])(data_t *data, sfEvent event) = {
 
 void set_idle_tool(data_t *data, enum buttons_pos btn)
 {
-    sfSprite_setColor(data->ui.buttons[btn].sprite,
+    sfSprite_setColor(data->interface.buttons[btn].sprite,
         (sfColor){255, 255, 255, 255});
-    data->ui.buttons[btn].state = IDLE;
+    data->interface.buttons[btn].state = IDLE;
 }
 
 void set_selected_tool(data_t *data, enum buttons_pos btn)
 {
-    sfSprite_setColor(data->ui.buttons[btn].sprite,
+    sfSprite_setColor(data->interface.buttons[btn].sprite,
         (sfColor){150, 150, 150, 255});
-    data->ui.buttons[btn].state = SELECTED;
+    data->interface.buttons[btn].state = SELECTED;
     data->selected_tool_func = tool_function[btn];
 }
 
 void set_hovered_tool(data_t *data, enum buttons_pos btn)
 {
-    sfSprite_setColor(data->ui.buttons[btn].sprite,
+    sfSprite_setColor(data->interface.buttons[btn].sprite,
         (sfColor){200, 200, 200, 255});
-    data->ui.buttons[btn].state = HOVERED;
+    data->interface.buttons[btn].state = HOVERED;
 }
 
 void reset_hovered_tool(data_t *data)
 {
     for (int i = 0; i < NB_BUTTON; ++i) {
-        if (data->ui.buttons[i].state == HOVERED)
+        if (data->interface.buttons[i].state == HOVERED)
             set_idle_tool(data, i);
     }
-    data->ui.tooltip.is_visible = false;
+    data->interface.tooltip.is_visible = false;
 }
 
 void reset_selected_tool(data_t *data)

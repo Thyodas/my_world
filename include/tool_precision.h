@@ -18,5 +18,4 @@
         float delta_z[3];
     } tool_precision_t;
 
-
 #endif /* !TOOL_PRECISION_H_ */

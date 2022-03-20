@@ -70,7 +70,7 @@
         sfRenderWindow *window;
         textures_t textures;
         map_t map;
-        interface_t ui;
+        interface_t interface;
         sfEvent event;
         sfVector2i pos_mouse;
         sfVector2i translation_point;

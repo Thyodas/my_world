@@ -23,8 +23,8 @@ sfTexture *texture)
 
 void load_backgrounds(data_t *data)
 {
-    data->ui.backgrounds[BACKGROUND_TOOLS] = create_background(0, 222,
-        data->ui.textures.tools_bg.texture);
-    data->ui.ui_bg = create_background(0, 0,
-        data->ui.textures.ui_bg.texture);
+    data->interface.backgrounds[BACKGROUND_TOOLS] = create_background(0, 222,
+        data->interface.textures.tools_bg.texture);
+    data->interface.ui_bg = create_background(0, 0,
+        data->interface.textures.ui_bg.texture);
 }

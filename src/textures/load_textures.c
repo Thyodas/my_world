@@ -28,35 +28,35 @@ static load_tile_textures(data_t *data)
         (sfVector2u){16, 16}, DIRT);
     load_texture_data(&data->textures.stone, "img/tiles/stone.png",
         (sfVector2u){16, 16}, STONE);
-    load_texture_data(&data->ui.textures.grass_btn,
+    load_texture_data(&data->interface.textures.grass_btn,
         "img/tiles/grass_btn.png", (sfVector2u){68, 68}, -1);
-    load_texture_data(&data->ui.textures.dirt_btn,
+    load_texture_data(&data->interface.textures.dirt_btn,
         "img/tiles/dirt_btn.png", (sfVector2u){68, 68}, -1);
-    load_texture_data(&data->ui.textures.sand_btn,
+    load_texture_data(&data->interface.textures.sand_btn,
         "img/tiles/sand_btn.png", (sfVector2u){68, 68}, -1);
-    load_texture_data(&data->ui.textures.stone_btn,
+    load_texture_data(&data->interface.textures.stone_btn,
         "img/tiles/stone_btn.png", (sfVector2u){68, 68}, -1);
 }
 
 static load_tool_textures(data_t *data)
 {
-    load_texture_data(&data->ui.textures.bucket,
+    load_texture_data(&data->interface.textures.bucket,
         "img/tools/bucket.png", (sfVector2u){62, 62}, -1);
-    load_texture_data(&data->ui.textures.panning,
+    load_texture_data(&data->interface.textures.panning,
         "img/tools/panning.png", (sfVector2u){62, 62}, -1);
-    load_texture_data(&data->ui.textures.precision,
+    load_texture_data(&data->interface.textures.precision,
         "img/tools/precision.png", (sfVector2u){62, 62}, -1);
-    load_texture_data(&data->ui.textures.level, "img/tools/level.png",
+    load_texture_data(&data->interface.textures.level, "img/tools/level.png",
         (sfVector2u){62, 62}, -1);
-    load_texture_data(&data->ui.textures.picker,
+    load_texture_data(&data->interface.textures.picker,
         "img/tools/picker.png", (sfVector2u){62, 62}, -1);
 }
 
 static load_background_textures(data_t *data)
 {
-    load_texture_data(&data->ui.textures.tools_bg,
+    load_texture_data(&data->interface.textures.tools_bg,
         "img/backgrounds/tools_bg.png", (sfVector2u){135, 476}, -1);
-    load_texture_data(&data->ui.textures.ui_bg,
+    load_texture_data(&data->interface.textures.ui_bg,
         "img/backgrounds/ui_bg3_auto_x1.jpg", (sfVector2u){1920, 1080}, -1);
 }
 

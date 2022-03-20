@@ -29,10 +29,10 @@ static int check_buttons(data_t *data)
 {
     for (int i = 0; i < NB_BUTTON; ++i) {
         sfFloatRect rect =
-        sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
+        sfSprite_getGlobalBounds(data->interface.buttons[i].sprite);
         if (sfFloatRect_contains(&rect, data->pos_mouse.x,
             data->pos_mouse.y)) {
-            data->ui.buttons[i].on_click(data);
+            data->interface.buttons[i].on_click(data);
             return true;
         }
     }
@@ -50,20 +50,20 @@ int check_interface_hovering(data_t *data)
     reset_hovered_tool(data);
     for (int i = 0; i < NB_BUTTON; ++i) {
         sfFloatRect rct =
-        sfSprite_getGlobalBounds(data->ui.buttons[i].sprite);
+        sfSprite_getGlobalBounds(data->interface.buttons[i].sprite);
         if (!sfFloatRect_contains(&rct, data->pos_mouse.x, data->pos_mouse.y))
             continue;
         if (i < BTN_GRASS) {
             set_tooltip_text(data, TOOLTIP_TEXT[i]);
-            sfVector2f pos = sfSprite_getPosition(data->ui.buttons[i].sprite);
+            sfVector2f pos = sfSprite_getPosition(data->interface.buttons[i].sprite);
             set_tooltip_pos(data, pos.x + 82, pos.y);
-            data->ui.tooltip.is_visible = true;
+            data->interface.tooltip.is_visible = true;
         }
-        if (data->ui.buttons[i].state == IDLE) {
+        if (data->interface.buttons[i].state == IDLE) {
             set_hovered_tool(data, i);
             return true;
         }
-        if (data->ui.buttons[i].state == HOVERED)
+        if (data->interface.buttons[i].state == HOVERED)
             set_idle_tool(data, i);
     }
     return false;
