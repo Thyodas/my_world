@@ -15,7 +15,7 @@ void set_tooltip_pos(data_t *data, float x, float y)
         (sfVector2f){x, y});
 }
 
-void set_tooltip_text(data_t *data, char *text)
+void set_tooltip_text(data_t *data, char const *text)
 {
     sfText_setString(data->interface.tooltip.text, text);
     sfFloatRect text_rect = sfText_getGlobalBounds(

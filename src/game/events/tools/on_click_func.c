@@ -9,9 +9,9 @@
 
 void tool_precision_modify(data_t *data, tool_precision_t tool);
 void set_precision_struct(data_t *data, tool_precision_t *tool);
-float calc_newz(data_t *data, int i, int j, int new_y);
+float calc_newz(data_t *data, int i, int j);
 
-int tool_bucket(data_t *data, sfEvent event)
+int tool_bucket(data_t *data)
 {
     if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.is_tile_hovered)
         return (0);
@@ -19,7 +19,7 @@ int tool_bucket(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_panning(data_t *data, sfEvent event)
+int tool_panning(data_t *data)
 {
     static sfVector2i old_mouse_pos = {-1, -1};
     if (!sfMouse_isButtonPressed(sfMouseLeft)) {
@@ -33,11 +33,11 @@ int tool_panning(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_precision(data_t *data, sfEvent event)
+int tool_precision(data_t *data)
 {
     static tool_precision_t tool;
     if (data->map.hovered_tile == NULL)
-        return;
+        return 0;
     if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.hovered_tile) {
         set_precision_struct(data, &tool);
         return (0);
@@ -46,13 +46,12 @@ int tool_precision(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_level(data_t *data, sfEvent event)
+int tool_level(data_t *data)
 {
     if (!data->map.is_tile_hovered)
         return (0);
     int x = data->map.hovered_tile->index_x;
     int y = data->map.hovered_tile->index_y;
-    sfColor color = data->map.tiles[x][y].color;
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
         data->map.tiles[x][y].coord_3d.z += 0.1;
         data->map.tiles[x + 1][y].coord_3d.z += 0.1;
@@ -69,7 +68,7 @@ int tool_level(data_t *data, sfEvent event)
     return 0;
 }
 
-int tool_picker(data_t *data, sfEvent event)
+int tool_picker(data_t *data)
 {
     if (!sfMouse_isButtonPressed(sfMouseLeft) || !data->map.is_tile_hovered)
         return (0);

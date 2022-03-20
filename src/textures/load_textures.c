@@ -16,7 +16,7 @@ static void load_texture_data(texture_data_t *texture, char *path,
     texture->txt = id;
 }
 
-static load_tile_textures(data_t *data)
+static void load_tile_textures(data_t *data)
 {
     load_texture_data(&data->textures.checker,
         "img/tiles/check.jpg", (sfVector2u){2048, 2048}, -1);
@@ -38,7 +38,7 @@ static load_tile_textures(data_t *data)
         "img/tiles/stone_btn.png", (sfVector2u){68, 68}, -1);
 }
 
-static load_tool_textures(data_t *data)
+static void load_tool_textures(data_t *data)
 {
     load_texture_data(&data->interface.textures.bucket,
         "img/tools/bucket.png", (sfVector2u){62, 62}, -1);
@@ -52,7 +52,7 @@ static load_tool_textures(data_t *data)
         "img/tools/picker.png", (sfVector2u){62, 62}, -1);
 }
 
-static load_background_textures(data_t *data)
+static void load_background_textures(data_t *data)
 {
     load_texture_data(&data->interface.textures.tools_bg,
         "img/backgrounds/tools_bg.png", (sfVector2u){135, 476}, -1);

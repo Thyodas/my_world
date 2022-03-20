@@ -7,6 +7,7 @@
 
 #include "myworld.h"
 #include <stdlib.h>
+#include "my.h"
 
 void main_loop(data_t *data);
 void free_3d_map(sfVector3f **map_3d);

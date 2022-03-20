@@ -7,13 +7,13 @@
 
 #include "myworld.h"
 
-int tool_bucket(data_t *data, sfEvent event);
-int tool_panning(data_t *data, sfEvent event);
-int tool_precision(data_t *data, sfEvent event);
-int tool_level(data_t *data, sfEvent event);
-int tool_picker(data_t *data, sfEvent event);
+int tool_bucket(data_t *data);
+int tool_panning(data_t *data);
+int tool_precision(data_t *data);
+int tool_level(data_t *data);
+int tool_picker(data_t *data);
 
-int (*const TOOL_FUNCTION[])(data_t *data, sfEvent event) = {
+int (*const TOOL_FUNCTION[])(data_t *data) = {
     tool_bucket,
     tool_panning,
     tool_precision,

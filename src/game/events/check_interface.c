@@ -12,7 +12,7 @@ void set_hovered_tool(data_t *data, enum buttons_pos btn);
 void reset_selected_tool(data_t *data);
 void set_idle_tool(data_t *data, enum buttons_pos btn);
 void reset_hovered_tool(data_t *data);
-void set_tooltip_text(data_t *data, char *text);
+void set_tooltip_text(data_t *data, char const *text);
 void set_tooltip_pos(data_t *data, float x, float y);
 
 static const char *TOOLTIP_TEXT[] = {
@@ -43,6 +43,7 @@ bool check_interface(data_t *data)
 {
     if (check_buttons(data))
         return true;
+    return false;
 }
 
 int check_interface_hovering(data_t *data)

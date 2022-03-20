@@ -10,7 +10,7 @@
 
 sfVector2f project_iso_point(float x, float y, float z, sfVector2f factors);
 
-static bool cmp_tile(data_t *data, tile_t *tile1, tile_t *tile2)
+static bool cmp_tile(tile_t *tile1, tile_t *tile2)
 {
     return (tile1->coord_2d_flat.y < tile2->coord_2d_flat.y);
 }
@@ -19,7 +19,7 @@ static void swap_tile(data_t *data, int pos1, int pos2)
 {
     tile_t *temp;
 
-    if (cmp_tile(data, data->map.draw_order[pos1],
+    if (cmp_tile(data->map.draw_order[pos1],
         data->map.draw_order[pos2])) {
         temp = data->map.draw_order[pos1];
         data->map.draw_order[pos1] = data->map.draw_order[pos2];

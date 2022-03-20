@@ -83,6 +83,7 @@ int tool_shortcut(data_t *data, sfEvent event)
                 break;
         }
     }
+    return 1;
 }
 
 void check_event(data_t *data)
